@@ -39,6 +39,8 @@
 		5E0B426625377A70003B792A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B426125377A70003B792A /* HomeViewController.swift */; };
 		5E0B426725377A70003B792A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B426225377A70003B792A /* HomeInteractor.swift */; };
 		5E0B426825377A70003B792A /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B426325377A70003B792A /* HomeWireframe.swift */; };
+		5E0B428025378900003B792A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B427F25378900003B792A /* UIColor+Hex.swift */; };
+		5E0B428425378924003B792A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B428325378924003B792A /* Colors.swift */; };
 		A1E1069F856CF815DB641E3F /* Pods_Webshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF491BE014B7C66B2DC87A73 /* Pods_Webshop.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 		5E0B426125377A70003B792A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5E0B426225377A70003B792A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		5E0B426325377A70003B792A /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		5E0B427F25378900003B792A /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Webshop/Modules/Home/UIColor+Hex.swift"; sourceTree = SOURCE_ROOT; };
+		5E0B428325378924003B792A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9C0B7910D5B3D654CE3114A2 /* Pods-TemplateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemplateUITests.debug.xcconfig"; path = "Target Support Files/Pods-TemplateUITests/Pods-TemplateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1C71581E8FB7D1071CE22E /* Pods_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CAEEC061AE32803DA046C /* Pods-Webshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Webshop.release.xcconfig"; path = "Target Support Files/Pods-Webshop/Pods-Webshop.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				1B0BFB2E233629630054E28A /* Initializers */,
 				1B0BFAFB233628850054E28A /* AppDelegate.swift */,
 				1BDD46A123AFFEAE0020AC54 /* Constants.swift */,
+				5E0B428325378924003B792A /* Colors.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -287,7 +292,8 @@
 		5E0B4258253779DA003B792A /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				5E0B4259253779F0003B792A /* UIVIewController+KeyboardHide.swift */,
+				5E0B427E253788E7003B792A /* UIColor */,
+				5E0B427D253788DD003B792A /* UIVIewController */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -302,6 +308,22 @@
 				5E0B426325377A70003B792A /* HomeWireframe.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		5E0B427D253788DD003B792A /* UIVIewController */ = {
+			isa = PBXGroup;
+			children = (
+				5E0B4259253779F0003B792A /* UIVIewController+KeyboardHide.swift */,
+			);
+			path = UIVIewController;
+			sourceTree = "<group>";
+		};
+		5E0B427E253788E7003B792A /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				5E0B427F25378900003B792A /* UIColor+Hex.swift */,
+			);
+			path = UIColor;
 			sourceTree = "<group>";
 		};
 		BA60848800195AD7C50DED11 /* Frameworks */ = {
@@ -467,10 +489,12 @@
 				1B0BFB3D23362A000054E28A /* FormatterInterface.swift in Sources */,
 				1B0BFAFC233628850054E28A /* AppDelegate.swift in Sources */,
 				1B0BFB562336303F0054E28A /* TabbarPresenter.swift in Sources */,
+				5E0B428425378924003B792A /* Colors.swift in Sources */,
 				1B0BFB4623362B740054E28A /* BaseViewController.swift in Sources */,
 				1BB2479523E6EE8000EBFD39 /* DataExtensions.swift in Sources */,
 				1B0BFB30233629890054E28A /* Initializable.swift in Sources */,
 				1B0BFB4D23362F950054E28A /* LoggerInitializer.swift in Sources */,
+				5E0B428025378900003B792A /* UIColor+Hex.swift in Sources */,
 				5E0B426525377A70003B792A /* HomePresenter.swift in Sources */,
 				5E0B425A253779F0003B792A /* UIVIewController+KeyboardHide.swift in Sources */,
 				1B0BFB582336303F0054E28A /* TabbarInterfaces.swift in Sources */,

@@ -42,6 +42,7 @@ extension TabbarPresenter: TabbarPresenterInterface {
     
     func setupViewControllers() -> [UIViewController] {
         let controllers: [UIViewController] = [
+            HomeWireframe().viewController
         ]
         
         return controllers
