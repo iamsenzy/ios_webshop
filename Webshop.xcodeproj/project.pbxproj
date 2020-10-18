@@ -41,6 +41,21 @@
 		5E0B426825377A70003B792A /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B426325377A70003B792A /* HomeWireframe.swift */; };
 		5E0B428025378900003B792A /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B427F25378900003B792A /* UIColor+Hex.swift */; };
 		5E0B428425378924003B792A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B428325378924003B792A /* Colors.swift */; };
+		5E214100253B164C000FD39C /* SearchInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2140FB253B164C000FD39C /* SearchInterfaces.swift */; };
+		5E214101253B164C000FD39C /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2140FC253B164C000FD39C /* SearchPresenter.swift */; };
+		5E214102253B164C000FD39C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2140FD253B164C000FD39C /* SearchViewController.swift */; };
+		5E214103253B164C000FD39C /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2140FE253B164C000FD39C /* SearchInteractor.swift */; };
+		5E214104253B164C000FD39C /* SearchWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2140FF253B164C000FD39C /* SearchWireframe.swift */; };
+		5E214108253B172C000FD39C /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214107253B172C000FD39C /* SearchCell.swift */; };
+		5E21410D253B205E000FD39C /* UIView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21410C253B205E000FD39C /* UIView+Rounded.swift */; };
+		5E214110253B2187000FD39C /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E21410F253B2187000FD39C /* UIView+Shadow.swift */; };
+		5E214114253B2233000FD39C /* FontDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214113253B2233000FD39C /* FontDelivery.swift */; };
+		5E21411C253B225C000FD39C /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E214117253B225C000FD39C /* Roboto-Medium.ttf */; };
+		5E21411D253B225C000FD39C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E214118253B225C000FD39C /* Roboto-Regular.ttf */; };
+		5E21411E253B225C000FD39C /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E214119253B225C000FD39C /* Roboto-Italic.ttf */; };
+		5E21411F253B225C000FD39C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411A253B225C000FD39C /* Roboto-Bold.ttf */; };
+		5E214120253B225C000FD39C /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411B253B225C000FD39C /* Roboto-Black.ttf */; };
+		5E214123253B2402000FD39C /* SearchCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214122253B2402000FD39C /* SearchCellModel.swift */; };
 		A1E1069F856CF815DB641E3F /* Pods_Webshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF491BE014B7C66B2DC87A73 /* Pods_Webshop.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +99,21 @@
 		5E0B426325377A70003B792A /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
 		5E0B427F25378900003B792A /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Webshop/Modules/Home/UIColor+Hex.swift"; sourceTree = SOURCE_ROOT; };
 		5E0B428325378924003B792A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5E2140FB253B164C000FD39C /* SearchInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInterfaces.swift; sourceTree = "<group>"; };
+		5E2140FC253B164C000FD39C /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		5E2140FD253B164C000FD39C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5E2140FE253B164C000FD39C /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		5E2140FF253B164C000FD39C /* SearchWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWireframe.swift; sourceTree = "<group>"; };
+		5E214107253B172C000FD39C /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		5E21410C253B205E000FD39C /* UIView+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
+		5E21410F253B2187000FD39C /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		5E214113253B2233000FD39C /* FontDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontDelivery.swift; sourceTree = "<group>"; };
+		5E214117253B225C000FD39C /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		5E214118253B225C000FD39C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		5E214119253B225C000FD39C /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		5E21411A253B225C000FD39C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		5E21411B253B225C000FD39C /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		5E214122253B2402000FD39C /* SearchCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellModel.swift; sourceTree = "<group>"; };
 		9C0B7910D5B3D654CE3114A2 /* Pods-TemplateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemplateUITests.debug.xcconfig"; path = "Target Support Files/Pods-TemplateUITests/Pods-TemplateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1C71581E8FB7D1071CE22E /* Pods_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CAEEC061AE32803DA046C /* Pods-Webshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Webshop.release.xcconfig"; path = "Target Support Files/Pods-Webshop/Pods-Webshop.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +188,7 @@
 		1B0BFB2D2336294C0054E28A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5E214116253B225C000FD39C /* Fonts */,
 				1B0BFB04233628870054E28A /* Assets.xcassets */,
 				1B0BFB06233628870054E28A /* LaunchScreen.storyboard */,
 			);
@@ -176,6 +207,7 @@
 		1B0BFB31233629E10054E28A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5E214112253B2208000FD39C /* Helpers */,
 				1B0BFB3F23362B020054E28A /* BaseClasses */,
 				1BDD469E23AFFCAE0020AC54 /* Extensions */,
 				1BDD469F23AFFCB40020AC54 /* Models */,
@@ -222,6 +254,7 @@
 		1B0BFB4E23362FF90054E28A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5E2140FA253B163D000FD39C /* Search */,
 				5E0B425D25377A5E003B792A /* Home */,
 				1B0BFB4F233630190054E28A /* Tabbar */,
 			);
@@ -278,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				1BB2479123E6ED0500EBFD39 /* APIError.swift */,
+				5E214122253B2402000FD39C /* SearchCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +319,7 @@
 		1BDD46A023AFFCBA0020AC54 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E214106253B1719000FD39C /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +327,7 @@
 		5E0B4258253779DA003B792A /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5E21410B253B2046000FD39C /* UIView */,
 				5E0B427E253788E7003B792A /* UIColor */,
 				5E0B427D253788DD003B792A /* UIVIewController */,
 			);
@@ -324,6 +360,55 @@
 				5E0B427F25378900003B792A /* UIColor+Hex.swift */,
 			);
 			path = UIColor;
+			sourceTree = "<group>";
+		};
+		5E2140FA253B163D000FD39C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5E2140FB253B164C000FD39C /* SearchInterfaces.swift */,
+				5E2140FC253B164C000FD39C /* SearchPresenter.swift */,
+				5E2140FD253B164C000FD39C /* SearchViewController.swift */,
+				5E2140FE253B164C000FD39C /* SearchInteractor.swift */,
+				5E2140FF253B164C000FD39C /* SearchWireframe.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		5E214106253B1719000FD39C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5E214107253B172C000FD39C /* SearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		5E21410B253B2046000FD39C /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				5E21410C253B205E000FD39C /* UIView+Rounded.swift */,
+				5E21410F253B2187000FD39C /* UIView+Shadow.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		5E214112253B2208000FD39C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5E214113253B2233000FD39C /* FontDelivery.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5E214116253B225C000FD39C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5E214117253B225C000FD39C /* Roboto-Medium.ttf */,
+				5E214118253B225C000FD39C /* Roboto-Regular.ttf */,
+				5E214119253B225C000FD39C /* Roboto-Italic.ttf */,
+				5E21411A253B225C000FD39C /* Roboto-Bold.ttf */,
+				5E21411B253B225C000FD39C /* Roboto-Black.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		BA60848800195AD7C50DED11 /* Frameworks */ = {
@@ -412,7 +497,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E21411F253B225C000FD39C /* Roboto-Bold.ttf in Resources */,
+				5E21411C253B225C000FD39C /* Roboto-Medium.ttf in Resources */,
+				5E21411E253B225C000FD39C /* Roboto-Italic.ttf in Resources */,
+				5E214120253B225C000FD39C /* Roboto-Black.ttf in Resources */,
 				1B0BFB5A2336303F0054E28A /* Tabbar.storyboard in Resources */,
+				5E21411D253B225C000FD39C /* Roboto-Regular.ttf in Resources */,
 				1B0BFB08233628870054E28A /* LaunchScreen.storyboard in Resources */,
 				1B0BFB05233628870054E28A /* Assets.xcassets in Resources */,
 			);
@@ -492,20 +582,29 @@
 				5E0B428425378924003B792A /* Colors.swift in Sources */,
 				1B0BFB4623362B740054E28A /* BaseViewController.swift in Sources */,
 				1BB2479523E6EE8000EBFD39 /* DataExtensions.swift in Sources */,
+				5E214108253B172C000FD39C /* SearchCell.swift in Sources */,
+				5E214104253B164C000FD39C /* SearchWireframe.swift in Sources */,
 				1B0BFB30233629890054E28A /* Initializable.swift in Sources */,
 				1B0BFB4D23362F950054E28A /* LoggerInitializer.swift in Sources */,
 				5E0B428025378900003B792A /* UIColor+Hex.swift in Sources */,
+				5E214101253B164C000FD39C /* SearchPresenter.swift in Sources */,
+				5E214100253B164C000FD39C /* SearchInterfaces.swift in Sources */,
 				5E0B426525377A70003B792A /* HomePresenter.swift in Sources */,
+				5E214114253B2233000FD39C /* FontDelivery.swift in Sources */,
 				5E0B425A253779F0003B792A /* UIVIewController+KeyboardHide.swift in Sources */,
+				5E214123253B2402000FD39C /* SearchCellModel.swift in Sources */,
 				1B0BFB582336303F0054E28A /* TabbarInterfaces.swift in Sources */,
 				5E0B426825377A70003B792A /* HomeWireframe.swift in Sources */,
 				1B0BFB3C23362A000054E28A /* InteractorInterface.swift in Sources */,
 				1B0BFB3A23362A000054E28A /* UIStoryboardExtension.swift in Sources */,
 				5E0B426625377A70003B792A /* HomeViewController.swift in Sources */,
+				5E214102253B164C000FD39C /* SearchViewController.swift in Sources */,
 				1B0BFB4723362B740054E28A /* BaseTabbarProtocolController.swift in Sources */,
+				5E21410D253B205E000FD39C /* UIView+Rounded.swift in Sources */,
 				1B0BFB4A23362ECE0054E28A /* TabbarProtocol.swift in Sources */,
 				1B0BFB592336303F0054E28A /* TabbarWireframe.swift in Sources */,
 				1B0BFB4523362B740054E28A /* BaseResponse.swift in Sources */,
+				5E214110253B2187000FD39C /* UIView+Shadow.swift in Sources */,
 				1B0BFB5B2336303F0054E28A /* TabbarInteractor.swift in Sources */,
 				1B0BFB4123362B240054E28A /* BaseNavigationController.swift in Sources */,
 				1B0BFB3B23362A000054E28A /* BaseWireframe.swift in Sources */,
@@ -515,6 +614,7 @@
 				1B0BFB3E23362A000054E28A /* PresenterInterface.swift in Sources */,
 				1BB2479223E6ED0500EBFD39 /* APIError.swift in Sources */,
 				5E0B426725377A70003B792A /* HomeInteractor.swift in Sources */,
+				5E214103253B164C000FD39C /* SearchInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

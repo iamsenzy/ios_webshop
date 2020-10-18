@@ -41,10 +41,16 @@ extension TabbarPresenter: TabbarPresenterInterface {
     }
     
     func setupViewControllers() -> [UIViewController] {
+        
+        let home = HomeWireframe().viewController
+        let search = SearchWireframe().viewController
+        
         let controllers: [UIViewController] = [
-            HomeWireframe().viewController
+            home,
+            search
         ]
         
         return controllers
     }
+    
 }

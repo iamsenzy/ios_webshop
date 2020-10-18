@@ -21,6 +21,13 @@ class BaseNavigationController: UINavigationController {
     }
     
     private func setup() {
+        view.backgroundColor = Colors.greenBlue
+        //navigationBar.barTintColor = Colors.greenBlue
+        //navigationBar.backgroundColor = Colors.greenBlue
+        navigationBar.tintColor = Colors.softGray
+        navigationController?.navigationBar.largeTitleTextAttributes = [ .foregroundColor: Colors.softGray]
+        navigationController?.navigationBar.titleTextAttributes = [ .foregroundColor: Colors.softGray ]
+        
         navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
     }

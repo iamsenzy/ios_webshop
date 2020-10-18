@@ -22,6 +22,7 @@ final class HomeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         setup()
     }
     
@@ -41,7 +42,6 @@ final class HomeViewController: BaseViewController {
     
     private func initTableView() {
         tableView = UITableView()
-        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
