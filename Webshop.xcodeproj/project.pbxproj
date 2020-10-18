@@ -56,6 +56,13 @@
 		5E21411F253B225C000FD39C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411A253B225C000FD39C /* Roboto-Bold.ttf */; };
 		5E214120253B225C000FD39C /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411B253B225C000FD39C /* Roboto-Black.ttf */; };
 		5E214123253B2402000FD39C /* SearchCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214122253B2402000FD39C /* SearchCellModel.swift */; };
+		5EA412C1253C55B5002B5145 /* SelectedCategoryInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */; };
+		5EA412C2253C55B5002B5145 /* SelectedCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */; };
+		5EA412C3253C55B5002B5145 /* SelectedCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */; };
+		5EA412C4253C55B5002B5145 /* SelectedCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BF253C55B5002B5145 /* SelectedCategoryInteractor.swift */; };
+		5EA412C5253C55B5002B5145 /* SelectedCategoryWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412C0253C55B5002B5145 /* SelectedCategoryWireframe.swift */; };
+		5EA412C8253C581B002B5145 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412C7253C581B002B5145 /* ProductCell.swift */; };
+		5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412E2253C5D82002B5145 /* ProductModel.swift */; };
 		A1E1069F856CF815DB641E3F /* Pods_Webshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF491BE014B7C66B2DC87A73 /* Pods_Webshop.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +121,13 @@
 		5E21411A253B225C000FD39C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5E21411B253B225C000FD39C /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		5E214122253B2402000FD39C /* SearchCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellModel.swift; sourceTree = "<group>"; };
+		5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInterfaces.swift; sourceTree = "<group>"; };
+		5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryPresenter.swift; sourceTree = "<group>"; };
+		5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryViewController.swift; sourceTree = "<group>"; };
+		5EA412BF253C55B5002B5145 /* SelectedCategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInteractor.swift; sourceTree = "<group>"; };
+		5EA412C0253C55B5002B5145 /* SelectedCategoryWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryWireframe.swift; sourceTree = "<group>"; };
+		5EA412C7253C581B002B5145 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		5EA412E2253C5D82002B5145 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		9C0B7910D5B3D654CE3114A2 /* Pods-TemplateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemplateUITests.debug.xcconfig"; path = "Target Support Files/Pods-TemplateUITests/Pods-TemplateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1C71581E8FB7D1071CE22E /* Pods_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CAEEC061AE32803DA046C /* Pods-Webshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Webshop.release.xcconfig"; path = "Target Support Files/Pods-Webshop/Pods-Webshop.release.xcconfig"; sourceTree = "<group>"; };
@@ -254,6 +268,7 @@
 		1B0BFB4E23362FF90054E28A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5EA412BB253C559C002B5145 /* SelectedCategory */,
 				5E2140FA253B163D000FD39C /* Search */,
 				5E0B425D25377A5E003B792A /* Home */,
 				1B0BFB4F233630190054E28A /* Tabbar */,
@@ -312,6 +327,7 @@
 			children = (
 				1BB2479123E6ED0500EBFD39 /* APIError.swift */,
 				5E214122253B2402000FD39C /* SearchCellModel.swift */,
+				5EA412E2253C5D82002B5145 /* ProductModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -378,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				5E214107253B172C000FD39C /* SearchCell.swift */,
+				5EA412C7253C581B002B5145 /* ProductCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -409,6 +426,18 @@
 				5E21411B253B225C000FD39C /* Roboto-Black.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5EA412BB253C559C002B5145 /* SelectedCategory */ = {
+			isa = PBXGroup;
+			children = (
+				5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */,
+				5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */,
+				5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */,
+				5EA412BF253C55B5002B5145 /* SelectedCategoryInteractor.swift */,
+				5EA412C0253C55B5002B5145 /* SelectedCategoryWireframe.swift */,
+			);
+			path = SelectedCategory;
 			sourceTree = "<group>";
 		};
 		BA60848800195AD7C50DED11 /* Frameworks */ = {
@@ -577,6 +606,7 @@
 				1B0BFB572336303F0054E28A /* TabbarViewController.swift in Sources */,
 				1BDD46A223AFFEAE0020AC54 /* Constants.swift in Sources */,
 				1B0BFB3D23362A000054E28A /* FormatterInterface.swift in Sources */,
+				5EA412C5253C55B5002B5145 /* SelectedCategoryWireframe.swift in Sources */,
 				1B0BFAFC233628850054E28A /* AppDelegate.swift in Sources */,
 				1B0BFB562336303F0054E28A /* TabbarPresenter.swift in Sources */,
 				5E0B428425378924003B792A /* Colors.swift in Sources */,
@@ -591,7 +621,11 @@
 				5E214100253B164C000FD39C /* SearchInterfaces.swift in Sources */,
 				5E0B426525377A70003B792A /* HomePresenter.swift in Sources */,
 				5E214114253B2233000FD39C /* FontDelivery.swift in Sources */,
+				5EA412C8253C581B002B5145 /* ProductCell.swift in Sources */,
+				5EA412C3253C55B5002B5145 /* SelectedCategoryViewController.swift in Sources */,
+				5EA412C2253C55B5002B5145 /* SelectedCategoryPresenter.swift in Sources */,
 				5E0B425A253779F0003B792A /* UIVIewController+KeyboardHide.swift in Sources */,
+				5EA412C4253C55B5002B5145 /* SelectedCategoryInteractor.swift in Sources */,
 				5E214123253B2402000FD39C /* SearchCellModel.swift in Sources */,
 				1B0BFB582336303F0054E28A /* TabbarInterfaces.swift in Sources */,
 				5E0B426825377A70003B792A /* HomeWireframe.swift in Sources */,
@@ -600,6 +634,7 @@
 				5E0B426625377A70003B792A /* HomeViewController.swift in Sources */,
 				5E214102253B164C000FD39C /* SearchViewController.swift in Sources */,
 				1B0BFB4723362B740054E28A /* BaseTabbarProtocolController.swift in Sources */,
+				5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */,
 				5E21410D253B205E000FD39C /* UIView+Rounded.swift in Sources */,
 				1B0BFB4A23362ECE0054E28A /* TabbarProtocol.swift in Sources */,
 				1B0BFB592336303F0054E28A /* TabbarWireframe.swift in Sources */,
@@ -614,6 +649,7 @@
 				1B0BFB3E23362A000054E28A /* PresenterInterface.swift in Sources */,
 				1BB2479223E6ED0500EBFD39 /* APIError.swift in Sources */,
 				5E0B426725377A70003B792A /* HomeInteractor.swift in Sources */,
+				5EA412C1253C55B5002B5145 /* SelectedCategoryInterfaces.swift in Sources */,
 				5E214103253B164C000FD39C /* SearchInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

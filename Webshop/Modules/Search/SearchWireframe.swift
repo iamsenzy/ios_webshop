@@ -30,4 +30,8 @@ final class SearchWireframe: BaseWireframe {
 // MARK: - Extensions -
 
 extension SearchWireframe: SearchWireframeInterface {
+    func showSelectedCategory() {
+        navigationController?.pushWireframe(SelectedCategoryWireframe())
+    }
+    
 }

@@ -7,8 +7,8 @@
 //
 
 import SnapKit
-import SwiftyBeaver
 import SwifterSwift
+import SwiftyBeaver
 import UIKit
 
 let log = SwiftyBeaver.self

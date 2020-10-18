@@ -39,6 +39,14 @@ final class SearchPresenter {
 // MARK: - Extensions -
 
 extension SearchPresenter: SearchPresenterInterface {
+    func itemSelected(_ row: Int) {
+        wireframe.showSelectedCategory()
+    }
+    
+    func getItems() -> [SearchCellModel] {
+        searchCells
+    }
+    
     func getItem(_ row: Int) -> SearchCellModel {
         searchCells[row]
     }

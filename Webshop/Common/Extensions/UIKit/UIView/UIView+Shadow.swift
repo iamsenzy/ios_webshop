@@ -20,11 +20,11 @@ extension UIView {
         get {
             return layer.shadowOpacity > 0.0
         }
-        set {
-            if newValue == true {
-                self.addShadow()
-            }
-        }
+//        set {
+//            if newValue == true {
+//                self.addShadow()
+//            }
+//        }
     }
     
     /**

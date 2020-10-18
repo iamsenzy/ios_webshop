@@ -38,11 +38,13 @@ extension TabbarPresenter: TabbarPresenterInterface {
     func viewDidLoad() {
         view.set(controllers: setupViewControllers())
         view.select(tab: selectedTab)
+        
     }
     
     func setupViewControllers() -> [UIViewController] {
         
         let home = HomeWireframe().viewController
+        
         let search = SearchWireframe().viewController
         
         let controllers: [UIViewController] = [

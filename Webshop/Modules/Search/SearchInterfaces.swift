@@ -11,6 +11,7 @@
 import UIKit
 
 protocol SearchWireframeInterface: WireframeInterface {
+    func showSelectedCategory()
 }
 
 protocol SearchViewInterface: ViewInterface {
@@ -20,6 +21,8 @@ protocol SearchViewInterface: ViewInterface {
 protocol SearchPresenterInterface: PresenterInterface {
     func getSearchCount() -> Int
     func getItem(_ row: Int) -> SearchCellModel
+    func getItems() -> [SearchCellModel]
+    func itemSelected(_ row: Int)
 }
 
 protocol SearchInteractorInterface: InteractorInterface {
