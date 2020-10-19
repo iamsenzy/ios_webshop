@@ -10,10 +10,14 @@
 
 import UIKit
 
-final class SearchViewController: BaseViewController {
+final class SearchViewController: BaseTabbarProtocolController {
 
     private var searchController: UISearchController!
     private var tableView: UITableView!
+    
+    override var titleText: String? {
+        return "Search"
+    }
     
     // MARK: - Public properties -
 
@@ -50,7 +54,6 @@ final class SearchViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.layoutIfNeeded()
     }
     
     private func setup() {
@@ -60,6 +63,7 @@ final class SearchViewController: BaseViewController {
     }
     
     private func initNavigation() {
+        navigationItem.title = "Search"
         title = "Search"
     }
     

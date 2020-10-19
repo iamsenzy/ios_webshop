@@ -10,9 +10,13 @@
 
 import UIKit
 
-final class HomeViewController: BaseViewController {
+final class HomeViewController: BaseTabbarProtocolController {
 
     private var tableView: UITableView!
+    
+    override var titleText: String? {
+        return "Home"
+    }
     
     // MARK: - Public properties -
 
@@ -35,6 +39,7 @@ final class HomeViewController: BaseViewController {
     }
     
     private func initNavigation() {
+        navigationItem.title = "B My Webshop"
         title = "B My Webshop"
     }
     
@@ -52,3 +57,4 @@ final class HomeViewController: BaseViewController {
 
 extension HomeViewController: HomeViewInterface {
 }
+

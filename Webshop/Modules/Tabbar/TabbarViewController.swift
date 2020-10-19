@@ -36,7 +36,7 @@ extension TabbarViewController: TabbarViewInterface {
     func set(controllers: [UIViewController]) {
         viewControllers = controllers
         viewControllers?.forEach({ controller in
-            if let controller = controller as? BaseTabbarProtocolController {
+            if let controller = controller as? TabbarProtocol {
                 controller.setTabbarItem()
             }
         })
