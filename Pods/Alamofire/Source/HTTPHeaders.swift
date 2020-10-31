@@ -93,19 +93,16 @@ public struct HTTPHeaders {
         headers.remove(at: index)
     }
 
-    /// Sort the current instance by header name, case insensitively.
+    /// Sort the current instance by header name.
     public mutating func sort() {
-        headers.sort { $0.name.lowercased() < $1.name.lowercased() }
+        headers.sort { $0.name < $1.name }
     }
 
     /// Returns an instance sorted by header name.
     ///
     /// - Returns: A copy of the current instance sorted by name.
     public func sorted() -> HTTPHeaders {
-        var headers = self
-        headers.sort()
-
-        return headers
+        return HTTPHeaders(headers.sorted { $0.name < $1.name })
     }
 
     /// Case-insensitively find a header's value by name.
@@ -123,7 +120,7 @@ public struct HTTPHeaders {
     ///
     /// - Parameter name: The name of the header.
     public subscript(_ name: String) -> String? {
-        get { value(for: name) }
+        get { return value(for: name) }
         set {
             if let value = newValue {
                 update(name: name, value: value)
@@ -159,31 +156,31 @@ extension HTTPHeaders: ExpressibleByArrayLiteral {
 
 extension HTTPHeaders: Sequence {
     public func makeIterator() -> IndexingIterator<[HTTPHeader]> {
-        headers.makeIterator()
+        return headers.makeIterator()
     }
 }
 
 extension HTTPHeaders: Collection {
     public var startIndex: Int {
-        headers.startIndex
+        return headers.startIndex
     }
 
     public var endIndex: Int {
-        headers.endIndex
+        return headers.endIndex
     }
 
     public subscript(position: Int) -> HTTPHeader {
-        headers[position]
+        return headers[position]
     }
 
     public func index(after i: Int) -> Int {
-        headers.index(after: i)
+        return headers.index(after: i)
     }
 }
 
 extension HTTPHeaders: CustomStringConvertible {
     public var description: String {
-        headers.map { $0.description }
+        return headers.map { $0.description }
             .joined(separator: "\n")
     }
 }
@@ -211,7 +208,7 @@ public struct HTTPHeader: Hashable {
 
 extension HTTPHeader: CustomStringConvertible {
     public var description: String {
-        "\(name): \(value)"
+        return "\(name): \(value)"
     }
 }
 
@@ -221,7 +218,7 @@ extension HTTPHeader {
     /// - Parameter value: The `Accept` value.
     /// - Returns:         The header.
     public static func accept(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Accept", value: value)
+        return HTTPHeader(name: "Accept", value: value)
     }
 
     /// Returns an `Accept-Charset` header.
@@ -229,7 +226,7 @@ extension HTTPHeader {
     /// - Parameter value: The `Accept-Charset` value.
     /// - Returns:         The header.
     public static func acceptCharset(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Accept-Charset", value: value)
+        return HTTPHeader(name: "Accept-Charset", value: value)
     }
 
     /// Returns an `Accept-Language` header.
@@ -241,7 +238,7 @@ extension HTTPHeader {
     ///
     /// - Returns:         The header.
     public static func acceptLanguage(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Accept-Language", value: value)
+        return HTTPHeader(name: "Accept-Language", value: value)
     }
 
     /// Returns an `Accept-Encoding` header.
@@ -253,7 +250,7 @@ extension HTTPHeader {
     ///
     /// - Returns:         The header
     public static func acceptEncoding(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Accept-Encoding", value: value)
+        return HTTPHeader(name: "Accept-Encoding", value: value)
     }
 
     /// Returns a `Basic` `Authorization` header using the `username` and `password` provided.
@@ -275,7 +272,7 @@ extension HTTPHeader {
     ///
     /// - Returns:               The header.
     public static func authorization(bearerToken: String) -> HTTPHeader {
-        authorization("Bearer \(bearerToken)")
+        return authorization("Bearer \(bearerToken)")
     }
 
     /// Returns an `Authorization` header.
@@ -288,7 +285,7 @@ extension HTTPHeader {
     ///
     /// - Returns:         The header.
     public static func authorization(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Authorization", value: value)
+        return HTTPHeader(name: "Authorization", value: value)
     }
 
     /// Returns a `Content-Disposition` header.
@@ -297,7 +294,7 @@ extension HTTPHeader {
     ///
     /// - Returns:         The header.
     public static func contentDisposition(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Content-Disposition", value: value)
+        return HTTPHeader(name: "Content-Disposition", value: value)
     }
 
     /// Returns a `Content-Type` header.
@@ -309,7 +306,7 @@ extension HTTPHeader {
     ///
     /// - Returns:         The header.
     public static func contentType(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "Content-Type", value: value)
+        return HTTPHeader(name: "Content-Type", value: value)
     }
 
     /// Returns a `User-Agent` header.
@@ -318,7 +315,7 @@ extension HTTPHeader {
     ///
     /// - Returns:         The header.
     public static func userAgent(_ value: String) -> HTTPHeader {
-        HTTPHeader(name: "User-Agent", value: value)
+        return HTTPHeader(name: "User-Agent", value: value)
     }
 }
 
@@ -341,7 +338,7 @@ public extension HTTPHeaders {
 }
 
 extension HTTPHeader {
-    /// Returns Alamofire's default `Accept-Encoding` header, appropriate for the encodings supported by particular OS
+    /// Returns Alamofire's default `Accept-Encoding` header, appropriate for the encodings supporte by particular OS
     /// versions.
     ///
     /// See the [Accept-Encoding HTTP header documentation](https://tools.ietf.org/html/rfc7230#section-4.2.3) .
@@ -370,45 +367,44 @@ extension HTTPHeader {
     ///
     /// Example: `iOS Example/1.0 (org.alamofire.iOS-Example; build:1; iOS 13.0.0) Alamofire/5.0.0`
     public static let defaultUserAgent: HTTPHeader = {
-        let info = Bundle.main.infoDictionary
-        let executable = (info?[kCFBundleExecutableKey as String] as? String) ??
-            (ProcessInfo.processInfo.arguments.first?.split(separator: "/").last.map(String.init)) ??
-            "Unknown"
-        let bundle = info?[kCFBundleIdentifierKey as String] as? String ?? "Unknown"
-        let appVersion = info?["CFBundleShortVersionString"] as? String ?? "Unknown"
-        let appBuild = info?[kCFBundleVersionKey as String] as? String ?? "Unknown"
+        let userAgent: String = {
+            if let info = Bundle.main.infoDictionary {
+                let executable = info[kCFBundleExecutableKey as String] as? String ?? "Unknown"
+                let bundle = info[kCFBundleIdentifierKey as String] as? String ?? "Unknown"
+                let appVersion = info["CFBundleShortVersionString"] as? String ?? "Unknown"
+                let appBuild = info[kCFBundleVersionKey as String] as? String ?? "Unknown"
 
-        let osNameVersion: String = {
-            let version = ProcessInfo.processInfo.operatingSystemVersion
-            let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
-            let osName: String = {
-                #if os(iOS)
-                #if targetEnvironment(macCatalyst)
-                return "macOS(Catalyst)"
-                #else
-                return "iOS"
-                #endif
-                #elseif os(watchOS)
-                return "watchOS"
-                #elseif os(tvOS)
-                return "tvOS"
-                #elseif os(macOS)
-                return "macOS"
-                #elseif os(Linux)
-                return "Linux"
-                #elseif os(Windows)
-                return "Windows"
-                #else
-                return "Unknown"
-                #endif
-            }()
+                let osNameVersion: String = {
+                    let version = ProcessInfo.processInfo.operatingSystemVersion
+                    let versionString = "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+                    // swiftformat:disable indent
+                    let osName: String = {
+                    #if os(iOS)
+                        return "iOS"
+                    #elseif os(watchOS)
+                        return "watchOS"
+                    #elseif os(tvOS)
+                        return "tvOS"
+                    #elseif os(macOS)
+                        return "macOS"
+                    #elseif os(Linux)
+                        return "Linux"
+                    #else
+                        return "Unknown"
+                    #endif
+                    }()
+                    // swiftformat:enable indent
 
-            return "\(osName) \(versionString)"
+                    return "\(osName) \(versionString)"
+                }()
+
+                let alamofireVersion = "Alamofire/\(AF.version)"
+
+                return "\(executable)/\(appVersion) (\(bundle); build:\(appBuild); \(osNameVersion)) \(alamofireVersion)"
+            }
+
+            return "Alamofire"
         }()
-
-        let alamofireVersion = "Alamofire/\(version)"
-
-        let userAgent = "\(executable)/\(appVersion) (\(bundle); build:\(appBuild); \(osNameVersion)) \(alamofireVersion)"
 
         return .userAgent(userAgent)
     }()
@@ -416,7 +412,7 @@ extension HTTPHeader {
 
 extension Collection where Element == String {
     func qualityEncoded() -> String {
-        enumerated().map { index, encoding in
+        return enumerated().map { index, encoding in
             let quality = 1.0 - (Double(index) * 0.1)
             return "\(encoding);q=\(quality)"
         }.joined(separator: ", ")
@@ -428,7 +424,7 @@ extension Collection where Element == String {
 extension URLRequest {
     /// Returns `allHTTPHeaderFields` as `HTTPHeaders`.
     public var headers: HTTPHeaders {
-        get { allHTTPHeaderFields.map(HTTPHeaders.init) ?? HTTPHeaders() }
+        get { return allHTTPHeaderFields.map(HTTPHeaders.init) ?? HTTPHeaders() }
         set { allHTTPHeaderFields = newValue.dictionary }
     }
 }
@@ -436,14 +432,14 @@ extension URLRequest {
 extension HTTPURLResponse {
     /// Returns `allHeaderFields` as `HTTPHeaders`.
     public var headers: HTTPHeaders {
-        (allHeaderFields as? [String: String]).map(HTTPHeaders.init) ?? HTTPHeaders()
+        return (allHeaderFields as? [String: String]).map(HTTPHeaders.init) ?? HTTPHeaders()
     }
 }
 
 public extension URLSessionConfiguration {
     /// Returns `httpAdditionalHeaders` as `HTTPHeaders`.
     var headers: HTTPHeaders {
-        get { (httpAdditionalHeaders as? [String: String]).map(HTTPHeaders.init) ?? HTTPHeaders() }
+        get { return (httpAdditionalHeaders as? [String: String]).map(HTTPHeaders.init) ?? HTTPHeaders() }
         set { httpAdditionalHeaders = newValue.dictionary }
     }
 }

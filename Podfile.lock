@@ -1,5 +1,9 @@
 PODS:
-  - Alamofire (5.2.2)
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireObjectMapper (6.2.0):
+    - Alamofire (= 5.0.0-rc.2)
+    - ObjectMapper (~> 3.5.1)
+  - ObjectMapper (3.5.3)
   - SnapKit (5.0.1)
   - SwifterSwift (5.2.0):
     - SwifterSwift/AppKit (= 5.2.0)
@@ -30,7 +34,8 @@ PODS:
   - SwiftyBeaver (1.9.2)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 5.0.0-rc.2)
+  - AlamofireObjectMapper (~> 6.2.0)
   - SnapKit
   - SwifterSwift
   - SwiftLint
@@ -39,18 +44,22 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - AlamofireObjectMapper
+    - ObjectMapper
     - SnapKit
     - SwifterSwift
     - SwiftLint
     - SwiftyBeaver
 
 SPEC CHECKSUMS:
-  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireObjectMapper: 74d1440c92c42bbcc2b5f4dc81654ac095ec669f
+  ObjectMapper: 97111c97e054a6ee25917662106689f0b4127b37
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwifterSwift: 334181863c416882d97b7a60c05054d9e4d799e2
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
   SwiftyBeaver: b8239f6bfe9e1ea3303e6139abc8c24228081d84
 
-PODFILE CHECKSUM: a935764d0ca2a63d6192da37ea3f03eb114e46ea
+PODFILE CHECKSUM: 22f5252c24476ae622ad7065d3c0aa9788bda6ce
 
 COCOAPODS: 1.9.3

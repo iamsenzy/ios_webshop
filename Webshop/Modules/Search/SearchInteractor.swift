@@ -17,20 +17,7 @@ final class SearchInteractor {
 
 extension SearchInteractor: SearchInteractorInterface {
     func getSearchCells(completion: @escaping ([SearchCellModel]) -> Void ) {
-       var searchCells = [SearchCellModel(title: "Jacket"),
-                          SearchCellModel(title: "Sweatshirt / Pullover"),
-                          SearchCellModel(title: "Trousers"),
-                          SearchCellModel(title: "Denim"),
-                          SearchCellModel(title: "Accessories"),
-                          SearchCellModel(title: "Shirt"),
-                          SearchCellModel(title: "T-Shirt"),
-                          SearchCellModel(title: "Shoes"),
-                          SearchCellModel(title: "Shorts"),
-                          SearchCellModel(title: "Sports"),
-                          SearchCellModel(title: "Sportswear"),
-                          SearchCellModel(title: "Beachwear"),
-                          SearchCellModel(title: "Underwear & Socks")
-       ]
+        var searchCells = Dbs.shared.loadCategories()
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             completion(searchCells)
         }

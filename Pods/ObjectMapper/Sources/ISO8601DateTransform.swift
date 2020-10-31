@@ -1,7 +1,12 @@
 //
-//  StringEncoding+Alamofire.swift
+//  ISO8601DateTransform.swift
+//  ObjectMapper
 //
-//  Copyright (c) 2020 Alamofire Software Foundation (http://alamofire.org/)
+//  Created by Jean-Pierre Mouilleseaux on 21 Nov 2014.
+//
+//  The MIT License (MIT)
+//
+//  Copyright (c) 2014-2018 Tristan Himmelman
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -20,36 +25,23 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-//
 
 import Foundation
 
-extension String.Encoding {
-    /// Creates an encoding from the IANA charset name.
-    ///
-    /// - Notes: These mappings match those [provided by CoreFoundation](https://opensource.apple.com/source/CF/CF-476.18/CFStringUtilities.c.auto.html)
-    ///
-    /// - Parameter name: IANA charset name.
-    init?(ianaCharsetName name: String) {
-        switch name.lowercased() {
-        case "utf-8":
-            self = .utf8
-        case "iso-8859-1":
-            self = .isoLatin1
-        case "unicode-1-1", "iso-10646-ucs-2", "utf-16":
-            self = .utf16
-        case "utf-16be":
-            self = .utf16BigEndian
-        case "utf-16le":
-            self = .utf16LittleEndian
-        case "utf-32":
-            self = .utf32
-        case "utf-32be":
-            self = .utf32BigEndian
-        case "utf-32le":
-            self = .utf32LittleEndian
-        default:
-            return nil
-        }
-    }
+public extension DateFormatter {
+	convenience init(withFormat format : String, locale : String) {
+		self.init()
+		self.locale = Locale(identifier: locale)
+		dateFormat = format
+	}
 }
+
+open class ISO8601DateTransform: DateFormatterTransform {
+	
+	static let reusableISODateFormatter = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ssZZZZZ", locale: "en_US_POSIX")
+
+	public init() {
+		super.init(dateFormatter: ISO8601DateTransform.reusableISODateFormatter)
+	}
+}
+

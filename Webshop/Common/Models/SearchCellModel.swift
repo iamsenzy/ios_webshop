@@ -8,9 +8,9 @@
 
 import Foundation
 
-class SearchCellModel {
+class SearchCellModel: Encodable {
     var title: String?
-    var imageUrl: String?
+    var imageUrl: String? = nil
     
     convenience init(title: String? = "", imageUrl: String? = "") {
         self.init()

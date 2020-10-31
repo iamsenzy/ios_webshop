@@ -38,20 +38,6 @@ open class SessionDelegate: NSObject {
     public init(fileManager: FileManager = .default) {
         self.fileManager = fileManager
     }
-
-    /// Internal method to find and cast requests while maintaining some integrity checking.
-    ///
-    /// - Parameters:
-    ///   - task: The `URLSessionTask` for which to find the associated `Request`.
-    ///   - type: The `Request` subclass type to cast any `Request` associate with `task`.
-    func request<R: Request>(for task: URLSessionTask, as type: R.Type) -> R? {
-        guard let provider = stateProvider else {
-            assertionFailure("StateProvider is nil.")
-            return nil
-        }
-
-        return provider.request(for: task) as? R
-    }
 }
 
 /// Type which provides various `Session` state values.
@@ -62,7 +48,7 @@ protocol SessionStateProvider: AnyObject {
 
     func request(for task: URLSessionTask) -> Request?
     func didGatherMetricsForTask(_ task: URLSessionTask)
-    func didCompleteTask(_ task: URLSessionTask, completion: @escaping () -> Void)
+    func didCompleteTask(_ task: URLSessionTask)
     func credential(for task: URLSessionTask, in protectionSpace: URLProtectionSpace) -> URLCredential?
     func cancelRequestsForSessionInvalidation(with error: Error?)
 }
@@ -93,9 +79,10 @@ extension SessionDelegate: URLSessionTaskDelegate {
         switch challenge.protectionSpace.authenticationMethod {
         case NSURLAuthenticationMethodServerTrust:
             evaluation = attemptServerTrustAuthentication(with: challenge)
-        case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest, NSURLAuthenticationMethodNTLM,
-             NSURLAuthenticationMethodNegotiate, NSURLAuthenticationMethodClientCertificate:
-            evaluation = attemptCredentialAuthentication(for: challenge, belongingTo: task)
+        case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest:
+            evaluation = attemptHTTPAuthentication(for: challenge, belongingTo: task)
+        // case NSURLAuthenticationMethodClientCertificate:
+        // Alamofire doesn't currently support client certificate validation.
         default:
             evaluation = (.performDefaultHandling, nil, nil)
         }
@@ -134,15 +121,15 @@ extension SessionDelegate: URLSessionTaskDelegate {
         }
     }
 
-    /// Evaluates the credential-based authentication `URLAuthenticationChallenge` received for `task`.
+    /// Evaluates the HTTP authentication `URLAuthenticationChallenge` received for `task`.
     ///
     /// - Parameters:
     ///   - challenge: The `URLAuthenticationChallenge`.
     ///   - task:      The `URLSessionTask` which received the challenge.
     ///
     /// - Returns:     The `ChallengeEvaluation`.
-    func attemptCredentialAuthentication(for challenge: URLAuthenticationChallenge,
-                                         belongingTo task: URLSessionTask) -> ChallengeEvaluation {
+    func attemptHTTPAuthentication(for challenge: URLAuthenticationChallenge,
+                                   belongingTo task: URLSessionTask) -> ChallengeEvaluation {
         guard challenge.previousFailureCount == 0 else {
             return (.rejectProtectionSpace, nil, nil)
         }
@@ -174,10 +161,8 @@ extension SessionDelegate: URLSessionTaskDelegate {
                          needNewBodyStream completionHandler: @escaping (InputStream?) -> Void) {
         eventMonitor?.urlSession(session, taskNeedsNewBodyStream: task)
 
-        guard let request = request(for: task, as: UploadRequest.self) else {
-            assertionFailure("needNewBodyStream did not find UploadRequest.")
-            completionHandler(nil)
-            return
+        guard let request = stateProvider?.request(for: task) as? UploadRequest else {
+            fatalError("needNewBodyStream for request that isn't UploadRequest.")
         }
 
         completionHandler(request.inputStream())
@@ -208,11 +193,9 @@ extension SessionDelegate: URLSessionTaskDelegate {
     open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         eventMonitor?.urlSession(session, task: task, didCompleteWithError: error)
 
-        let request = stateProvider?.request(for: task)
+        stateProvider?.request(for: task)?.didCompleteTask(task, with: error.map { $0.asAFError(or: .sessionTaskFailed(error: $0)) })
 
-        stateProvider?.didCompleteTask(task) {
-            request?.didCompleteTask(task, with: error.map { $0.asAFError(or: .sessionTaskFailed(error: $0)) })
-        }
+        stateProvider?.didCompleteTask(task)
     }
 
     @available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
@@ -227,14 +210,11 @@ extension SessionDelegate: URLSessionDataDelegate {
     open func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         eventMonitor?.urlSession(session, dataTask: dataTask, didReceive: data)
 
-        if let request = request(for: dataTask, as: DataRequest.self) {
-            request.didReceive(data: data)
-        } else if let request = request(for: dataTask, as: DataStreamRequest.self) {
-            request.didReceive(data: data)
-        } else {
-            assertionFailure("dataTask did not find DataRequest or DataStreamRequest in didReceive")
-            return
+        guard let request = stateProvider?.request(for: dataTask) as? DataRequest else {
+            fatalError("dataTask received data for incorrect Request subclass: \(String(describing: stateProvider?.request(for: dataTask)))")
         }
+
+        request.didReceive(data: data)
     }
 
     open func urlSession(_ session: URLSession,
@@ -262,9 +242,9 @@ extension SessionDelegate: URLSessionDownloadDelegate {
                                  downloadTask: downloadTask,
                                  didResumeAtOffset: fileOffset,
                                  expectedTotalBytes: expectedTotalBytes)
-        guard let downloadRequest = request(for: downloadTask, as: DownloadRequest.self) else {
-            assertionFailure("downloadTask did not find DownloadRequest.")
-            return
+
+        guard let downloadRequest = stateProvider?.request(for: downloadTask) as? DownloadRequest else {
+            fatalError("No DownloadRequest found for downloadTask: \(downloadTask)")
         }
 
         downloadRequest.updateDownloadProgress(bytesWritten: fileOffset,
@@ -281,9 +261,9 @@ extension SessionDelegate: URLSessionDownloadDelegate {
                                  didWriteData: bytesWritten,
                                  totalBytesWritten: totalBytesWritten,
                                  totalBytesExpectedToWrite: totalBytesExpectedToWrite)
-        guard let downloadRequest = request(for: downloadTask, as: DownloadRequest.self) else {
-            assertionFailure("downloadTask did not find DownloadRequest.")
-            return
+
+        guard let downloadRequest = stateProvider?.request(for: downloadTask) as? DownloadRequest else {
+            fatalError("No DownloadRequest found for downloadTask: \(downloadTask)")
         }
 
         downloadRequest.updateDownloadProgress(bytesWritten: bytesWritten,
@@ -293,9 +273,8 @@ extension SessionDelegate: URLSessionDownloadDelegate {
     open func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         eventMonitor?.urlSession(session, downloadTask: downloadTask, didFinishDownloadingTo: location)
 
-        guard let request = request(for: downloadTask, as: DownloadRequest.self) else {
-            assertionFailure("downloadTask did not find DownloadRequest.")
-            return
+        guard let request = stateProvider?.request(for: downloadTask) as? DownloadRequest else {
+            fatalError("Download finished but either no request found or request wasn't DownloadRequest")
         }
 
         guard let response = request.response else {
@@ -320,9 +299,7 @@ extension SessionDelegate: URLSessionDownloadDelegate {
 
             request.didFinishDownloading(using: downloadTask, with: .success(destination))
         } catch {
-            request.didFinishDownloading(using: downloadTask, with: .failure(.downloadedFileMoveFailed(error: error,
-                                                                                                       source: location,
-                                                                                                       destination: destination)))
+            request.didFinishDownloading(using: downloadTask, with: .failure(.downloadedFileMoveFailed(error: error, source: location, destination: destination)))
         }
     }
 }

@@ -7,7 +7,9 @@
 //
 
 import Alamofire
+import AlamofireObjectMapper
 import Foundation
+import ObjectMapper
 
 class RestClient {
     

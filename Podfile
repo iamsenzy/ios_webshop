@@ -8,7 +8,8 @@ target 'Webshop' do
   use_frameworks!
 
   # Pods for Template
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 5.0.0-rc.2'
+  pod 'AlamofireObjectMapper', '~> 6.2.0'
   # pod 'Crashlytics'
   # pod 'Fabric'
   # pod 'Firebase/Analytics'

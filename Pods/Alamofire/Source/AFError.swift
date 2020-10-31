@@ -154,8 +154,6 @@ public enum AFError: Error {
         case settingAnchorCertificatesFailed(status: OSStatus, certificates: [SecCertificate])
         /// During evaluation, creation of the revocation policy failed.
         case revocationPolicyCreationFailed
-        /// `SecTrust` evaluation failed with the associated `Error`, if one was produced.
-        case trustEvaluationFailed(error: Error?)
         /// Default evaluation failed with the associated `Output`.
         case defaultEvaluationFailed(output: Output)
         /// Host validation failed with the associated `Output`.
@@ -215,7 +213,7 @@ public enum AFError: Error {
 extension Error {
     /// Returns the instance cast as an `AFError`.
     public var asAFError: AFError? {
-        self as? AFError
+        return self as? AFError
     }
 
     /// Returns the instance cast as an `AFError`. If casting fails, a `fatalError` with the specified `message` is thrown.
@@ -228,7 +226,7 @@ extension Error {
 
     /// Casts the instance as `AFError` or returns `defaultAFError`
     func asAFError(or defaultAFError: @autoclosure () -> AFError) -> AFError {
-        self as? AFError ?? defaultAFError()
+        return self as? AFError ?? defaultAFError()
     }
 }
 
@@ -424,7 +422,7 @@ extension AFError {
 
     /// The `source` URL of a `.downloadedFileMoveFailed` error.
     public var sourceURL: URL? {
-        guard case let .downloadedFileMoveFailed(_, source, _) = self else { return nil }
+        guard case .downloadedFileMoveFailed(_, let source, _) = self else { return nil }
         return source
     }
 
@@ -599,7 +597,6 @@ extension AFError.ServerTrustFailureReason {
              .policyApplicationFailed,
              .settingAnchorCertificatesFailed,
              .revocationPolicyCreationFailed,
-             .trustEvaluationFailed,
              .certificatePinningFailed,
              .publicKeyPinningFailed,
              .customEvaluationFailed:
@@ -610,8 +607,6 @@ extension AFError.ServerTrustFailureReason {
     var underlyingError: Error? {
         switch self {
         case let .customEvaluationFailed(error):
-            return error
-        case let .trustEvaluationFailed(error):
             return error
         case .noRequiredEvaluator,
              .noCertificatesFound,
@@ -662,8 +657,8 @@ extension AFError: LocalizedError {
             """
         case let .sessionInvalidated(error):
             return "Session was invalidated with error: \(error?.localizedDescription ?? "No description.")"
-        case let .serverTrustEvaluationFailed(reason):
-            return "Server trust evaluation failed due to reason: \(reason.localizedDescription)"
+        case .serverTrustEvaluationFailed:
+            return "Server trust evaluation failed."
         case let .urlRequestValidationFailed(reason):
             return "URLRequest validation failed due to reason: \(reason.localizedDescription)"
         case let .createUploadableFailed(error):
@@ -809,17 +804,15 @@ extension AFError.ServerTrustFailureReason {
             return "Attempting to set the provided certificates as anchor certificates failed."
         case .revocationPolicyCreationFailed:
             return "Attempting to create a revocation policy failed."
-        case let .trustEvaluationFailed(error):
-            return "SecTrust evaluation failed with error: \(error?.localizedDescription ?? "None")"
         case let .defaultEvaluationFailed(output):
             return "Default evaluation failed for host \(output.host)."
         case let .hostValidationFailed(output):
             return "Host validation failed for host \(output.host)."
-        case let .revocationCheckFailed(output, _):
+        case .revocationCheckFailed(let output, _):
             return "Revocation check failed for host \(output.host)."
-        case let .certificatePinningFailed(host, _, _, _):
+        case .certificatePinningFailed(let host, _, _, _):
             return "Certificate pinning failed for host \(host)."
-        case let .publicKeyPinningFailed(host, _, _, _):
+        case .publicKeyPinningFailed(let host, _, _, _):
             return "Public key pinning failed for host \(host)."
         case let .customEvaluationFailed(error):
             return "Custom trust evaluation failed with error: \(error.localizedDescription)"
