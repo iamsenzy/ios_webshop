@@ -22,7 +22,7 @@ final class SearchViewController: BaseTabbarProtocolController {
     // MARK: - Public properties -
 
     var presenter: SearchPresenterInterface!
-    var filteredCategory: [SearchCellModel] = []
+    var filteredCategory: [CategoryModel] = []
     
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
@@ -33,7 +33,7 @@ final class SearchViewController: BaseTabbarProtocolController {
     }
     
     func filterContentForSearchText(_ searchText: String) {
-        filteredCategory = presenter.getItems().filter { (category: SearchCellModel) -> Bool in
+        filteredCategory = presenter.getItems().filter { (category: CategoryModel) -> Bool in
             if let categoryTitle = category.title {
                 return categoryTitle.lowercased().contains(searchText.lowercased())
             }

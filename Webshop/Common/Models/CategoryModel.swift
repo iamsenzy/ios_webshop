@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class SearchCellModel: Encodable {
+class CategoryModel: NSObject, Mappable {
+   
     var title: String?
     var imageUrl: String? = nil
     
@@ -18,8 +20,21 @@ class SearchCellModel: Encodable {
         self.imageUrl = imageUrl
     }
     
+    override init() {
+        super.init()
+    }
+    
+    required init?(map: Map) {
+        super.init()
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        title <- map["name"]
+    }
+    
 }
 
-extension SearchCellModel: SearchCellBindable {
+extension CategoryModel: SearchCellBindable {
 }
 

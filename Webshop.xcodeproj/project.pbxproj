@@ -55,7 +55,7 @@
 		5E21411E253B225C000FD39C /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E214119253B225C000FD39C /* Roboto-Italic.ttf */; };
 		5E21411F253B225C000FD39C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411A253B225C000FD39C /* Roboto-Bold.ttf */; };
 		5E214120253B225C000FD39C /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411B253B225C000FD39C /* Roboto-Black.ttf */; };
-		5E214123253B2402000FD39C /* SearchCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214122253B2402000FD39C /* SearchCellModel.swift */; };
+		5E214123253B2402000FD39C /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214122253B2402000FD39C /* CategoryModel.swift */; };
 		5EA412C1253C55B5002B5145 /* SelectedCategoryInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */; };
 		5EA412C2253C55B5002B5145 /* SelectedCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */; };
 		5EA412C3253C55B5002B5145 /* SelectedCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */; };
@@ -63,6 +63,8 @@
 		5EA412C5253C55B5002B5145 /* SelectedCategoryWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412C0253C55B5002B5145 /* SelectedCategoryWireframe.swift */; };
 		5EA412C8253C581B002B5145 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412C7253C581B002B5145 /* ProductCell.swift */; };
 		5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412E2253C5D82002B5145 /* ProductModel.swift */; };
+		5EC482CA254D6B85008A0D16 /* RestClient+DressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC482C9254D6B85008A0D16 /* RestClient+DressService.swift */; };
+		5EC482CF254D71ED008A0D16 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */; };
 		A1E1069F856CF815DB641E3F /* Pods_Webshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF491BE014B7C66B2DC87A73 /* Pods_Webshop.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +122,7 @@
 		5E214119253B225C000FD39C /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		5E21411A253B225C000FD39C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5E21411B253B225C000FD39C /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
-		5E214122253B2402000FD39C /* SearchCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellModel.swift; sourceTree = "<group>"; };
+		5E214122253B2402000FD39C /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInterfaces.swift; sourceTree = "<group>"; };
 		5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryPresenter.swift; sourceTree = "<group>"; };
 		5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,8 @@
 		5EA412C0253C55B5002B5145 /* SelectedCategoryWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryWireframe.swift; sourceTree = "<group>"; };
 		5EA412C7253C581B002B5145 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		5EA412E2253C5D82002B5145 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		5EC482C9254D6B85008A0D16 /* RestClient+DressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestClient+DressService.swift"; sourceTree = "<group>"; };
+		5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
 		9C0B7910D5B3D654CE3114A2 /* Pods-TemplateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemplateUITests.debug.xcconfig"; path = "Target Support Files/Pods-TemplateUITests/Pods-TemplateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1C71581E8FB7D1071CE22E /* Pods_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CAEEC061AE32803DA046C /* Pods-Webshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Webshop.release.xcconfig"; path = "Target Support Files/Pods-Webshop/Pods-Webshop.release.xcconfig"; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				1B0BFB62233632C60054E28A /* RestClient.swift */,
+				5EC482C9254D6B85008A0D16 /* RestClient+DressService.swift */,
 			);
 			path = RestClient;
 			sourceTree = "<group>";
@@ -325,8 +330,9 @@
 		1BDD469F23AFFCB40020AC54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5EC482CD254D71D6008A0D16 /* Network */,
 				1BB2479123E6ED0500EBFD39 /* APIError.swift */,
-				5E214122253B2402000FD39C /* SearchCellModel.swift */,
+				5E214122253B2402000FD39C /* CategoryModel.swift */,
 				5EA412E2253C5D82002B5145 /* ProductModel.swift */,
 			);
 			path = Models;
@@ -438,6 +444,14 @@
 				5EA412C0253C55B5002B5145 /* SelectedCategoryWireframe.swift */,
 			);
 			path = SelectedCategory;
+			sourceTree = "<group>";
+		};
+		5EC482CD254D71D6008A0D16 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		BA60848800195AD7C50DED11 /* Frameworks */ = {
@@ -617,6 +631,7 @@
 				1B0BFB30233629890054E28A /* Initializable.swift in Sources */,
 				1B0BFB4D23362F950054E28A /* LoggerInitializer.swift in Sources */,
 				5E0B428025378900003B792A /* UIColor+Hex.swift in Sources */,
+				5EC482CF254D71ED008A0D16 /* CategoryResponse.swift in Sources */,
 				5E214101253B164C000FD39C /* SearchPresenter.swift in Sources */,
 				5E214100253B164C000FD39C /* SearchInterfaces.swift in Sources */,
 				5E0B426525377A70003B792A /* HomePresenter.swift in Sources */,
@@ -626,7 +641,7 @@
 				5EA412C2253C55B5002B5145 /* SelectedCategoryPresenter.swift in Sources */,
 				5E0B425A253779F0003B792A /* UIVIewController+KeyboardHide.swift in Sources */,
 				5EA412C4253C55B5002B5145 /* SelectedCategoryInteractor.swift in Sources */,
-				5E214123253B2402000FD39C /* SearchCellModel.swift in Sources */,
+				5E214123253B2402000FD39C /* CategoryModel.swift in Sources */,
 				1B0BFB582336303F0054E28A /* TabbarInterfaces.swift in Sources */,
 				5E0B426825377A70003B792A /* HomeWireframe.swift in Sources */,
 				1B0BFB3C23362A000054E28A /* InteractorInterface.swift in Sources */,
@@ -637,6 +652,7 @@
 				5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */,
 				5E21410D253B205E000FD39C /* UIView+Rounded.swift in Sources */,
 				1B0BFB4A23362ECE0054E28A /* TabbarProtocol.swift in Sources */,
+				5EC482CA254D6B85008A0D16 /* RestClient+DressService.swift in Sources */,
 				1B0BFB592336303F0054E28A /* TabbarWireframe.swift in Sources */,
 				1B0BFB4523362B740054E28A /* BaseResponse.swift in Sources */,
 				5E214110253B2187000FD39C /* UIView+Shadow.swift in Sources */,

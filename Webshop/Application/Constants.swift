@@ -13,6 +13,8 @@ let kAppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 struct Constants {
     
+    static let baseURL = "http://localhost:4040"
+    
     struct UserDefaults {
         static let ApiKey = "ApiKey"
     }

@@ -11,13 +11,18 @@
 import Foundation
 
 final class SearchInteractor {
+    private let dressProvider: DressService = RestClient.shared
 }
 
 // MARK: - Extensions -
 
 extension SearchInteractor: SearchInteractorInterface {
-    func getSearchCells(completion: @escaping ([SearchCellModel]) -> Void ) {
-        var searchCells = Dbs.shared.loadCategories()
+    func getCategories(completion: @escaping CategoryLoaded) {
+        dressProvider.getCategories { completion($0) }
+    }
+    
+    func getSearchCells(completion: @escaping ([CategoryModel]) -> Void ) {
+        var searchCells = [CategoryModel()]
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             completion(searchCells)
         }

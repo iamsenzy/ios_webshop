@@ -20,11 +20,11 @@ protocol SearchViewInterface: ViewInterface {
 
 protocol SearchPresenterInterface: PresenterInterface {
     func getSearchCount() -> Int
-    func getItem(_ row: Int) -> SearchCellModel
-    func getItems() -> [SearchCellModel]
+    func getItem(_ row: Int) -> CategoryModel
+    func getItems() -> [CategoryModel]
     func itemSelected(_ row: Int)
 }
 
 protocol SearchInteractorInterface: InteractorInterface {
-    func getSearchCells(completion: @escaping ([SearchCellModel]) -> Void )
+    func getCategories(completion: @escaping CategoryLoaded)
 }

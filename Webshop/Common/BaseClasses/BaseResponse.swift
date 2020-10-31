@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class BaseResponse: Codable {
+class BaseResponse {
 }

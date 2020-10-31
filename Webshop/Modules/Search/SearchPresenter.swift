@@ -18,7 +18,7 @@ final class SearchPresenter {
     private let interactor: SearchInteractorInterface
     private let wireframe: SearchWireframeInterface
     
-    private var searchCells = Array.init(repeating: SearchCellModel(), count: 6)
+    private var categories = Array.init(repeating: CategoryModel(), count: 6)
 
     // MARK: - Lifecycle -
 
@@ -29,10 +29,17 @@ final class SearchPresenter {
     }
     
     func viewDidLoad() {
-        interactor.getSearchCells { [weak self] items in
-            self?.searchCells = items
-            self?.view.reload()
+        
+        interactor.getCategories { [weak self] result in
+            switch result {
+            case .success(let categories):
+                self?.categories = categories.data ?? []
+                self?.view.reload()
+            case .failure(let error):
+                log.debug(error.localizedDescription)
+            }
         }
+        
     }
 }
 
@@ -43,16 +50,16 @@ extension SearchPresenter: SearchPresenterInterface {
         wireframe.showSelectedCategory()
     }
     
-    func getItems() -> [SearchCellModel] {
-        searchCells
+    func getItems() -> [CategoryModel] {
+        categories
     }
     
-    func getItem(_ row: Int) -> SearchCellModel {
-        searchCells[row]
+    func getItem(_ row: Int) -> CategoryModel {
+        categories[row]
     }
     
     func getSearchCount() -> Int {
-        searchCells.count
+        categories.count
     }
     
 }
