@@ -12,6 +12,7 @@ import Foundation
 import ObjectMapper
 
 typealias CategoryLoaded = (Result<CategoryResponse, Error>) -> Void
+typealias DressesLoaded = (Result<DressResponse, Error>) -> Void
 
 class RestClient {
     

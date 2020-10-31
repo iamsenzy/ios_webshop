@@ -26,5 +26,5 @@ protocol SelectedCategoryPresenterInterface: PresenterInterface {
 }
 
 protocol SelectedCategoryInteractorInterface: InteractorInterface {
-    func getProducts(completion: @escaping ([ProductModel]) -> Void )
+    func getDressesByCategory(category: Int ,completion: @escaping DressesLoaded)
 }

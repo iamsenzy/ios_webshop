@@ -13,6 +13,7 @@ import UIKit
 final class SelectedCategoryViewController: BaseViewController {
 
     private var collectionView: UICollectionView!
+    private let itemsPerRow: CGFloat = 2
     
     // MARK: - Public properties -
 
@@ -31,10 +32,16 @@ final class SelectedCategoryViewController: BaseViewController {
     }
     
     private func initCollectionView() {
+        
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 175.0, height: 280.0)
-        flowLayout.minimumLineSpacing = 10.0
-        flowLayout.minimumInteritemSpacing = 5.0
+        
+        let paddingSpace = 16.0 * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        flowLayout.itemSize = CGSize(width: widthPerItem, height: 280.0)
+        flowLayout.minimumLineSpacing = 0.0
+        flowLayout.minimumInteritemSpacing = 0.0
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.backgroundColor = .clear
@@ -43,11 +50,10 @@ final class SelectedCategoryViewController: BaseViewController {
         collectionView.register(cellWithClass: ProductCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.contentInset = UIEdgeInsets(top: 20.0, left: 16.0, bottom: 20.0, right: 16.0)
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(8.0)
-            make.trailing.equalToSuperview().offset(-8.0)
+            make.edges.equalToSuperview()
         }
     }
 
@@ -79,10 +85,6 @@ extension SelectedCategoryViewController: UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("I'm tapping the \(indexPath.item)")
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16.0, left: 8.0, bottom: 16.0, right: 8.0)
     }
     
 }

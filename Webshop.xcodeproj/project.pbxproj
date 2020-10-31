@@ -65,6 +65,7 @@
 		5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412E2253C5D82002B5145 /* ProductModel.swift */; };
 		5EC482CA254D6B85008A0D16 /* RestClient+DressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC482C9254D6B85008A0D16 /* RestClient+DressService.swift */; };
 		5EC482CF254D71ED008A0D16 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */; };
+		5EC482D2254DA86D008A0D16 /* DressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC482D1254DA86D008A0D16 /* DressResponse.swift */; };
 		A1E1069F856CF815DB641E3F /* Pods_Webshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF491BE014B7C66B2DC87A73 /* Pods_Webshop.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		5EA412E2253C5D82002B5145 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		5EC482C9254D6B85008A0D16 /* RestClient+DressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestClient+DressService.swift"; sourceTree = "<group>"; };
 		5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
+		5EC482D1254DA86D008A0D16 /* DressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DressResponse.swift; sourceTree = "<group>"; };
 		9C0B7910D5B3D654CE3114A2 /* Pods-TemplateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TemplateUITests.debug.xcconfig"; path = "Target Support Files/Pods-TemplateUITests/Pods-TemplateUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1C71581E8FB7D1071CE22E /* Pods_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41CAEEC061AE32803DA046C /* Pods-Webshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Webshop.release.xcconfig"; path = "Target Support Files/Pods-Webshop/Pods-Webshop.release.xcconfig"; sourceTree = "<group>"; };
@@ -330,7 +332,7 @@
 		1BDD469F23AFFCB40020AC54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5EC482CD254D71D6008A0D16 /* Network */,
+				5EC482CD254D71D6008A0D16 /* Responses */,
 				1BB2479123E6ED0500EBFD39 /* APIError.swift */,
 				5E214122253B2402000FD39C /* CategoryModel.swift */,
 				5EA412E2253C5D82002B5145 /* ProductModel.swift */,
@@ -446,12 +448,13 @@
 			path = SelectedCategory;
 			sourceTree = "<group>";
 		};
-		5EC482CD254D71D6008A0D16 /* Network */ = {
+		5EC482CD254D71D6008A0D16 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */,
+				5EC482D1254DA86D008A0D16 /* DressResponse.swift */,
 			);
-			path = Network;
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		BA60848800195AD7C50DED11 /* Frameworks */ = {
@@ -651,6 +654,7 @@
 				1B0BFB4723362B740054E28A /* BaseTabbarProtocolController.swift in Sources */,
 				5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */,
 				5E21410D253B205E000FD39C /* UIView+Rounded.swift in Sources */,
+				5EC482D2254DA86D008A0D16 /* DressResponse.swift in Sources */,
 				1B0BFB4A23362ECE0054E28A /* TabbarProtocol.swift in Sources */,
 				5EC482CA254D6B85008A0D16 /* RestClient+DressService.swift in Sources */,
 				1B0BFB592336303F0054E28A /* TabbarWireframe.swift in Sources */,

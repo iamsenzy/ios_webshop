@@ -11,15 +11,14 @@
 import Foundation
 
 final class SelectedCategoryInteractor {
+    let dressProvider: DressService = RestClient.shared
 }
 
 // MARK: - Extensions -
 
 extension SelectedCategoryInteractor: SelectedCategoryInteractorInterface {
-    func getProducts(completion: @escaping ([ProductModel]) -> Void ) {
-        var products = Array.init(repeating: ProductModel(title: "Lorem psum this is a verry long titler", price: 420, imageUrl: ""), count: 10)
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-            completion(products)
-        }
+    func getDressesByCategory(category: Int, completion: @escaping DressesLoaded) {
+        dressProvider.getDressesByCategory(category: category) { completion($0) }
     }
+    
 }

@@ -16,7 +16,9 @@ protocol ProductCellBindable {
 
 class ProductCell: UICollectionViewCell {
     
+    private var shadowView: UIView!
     private var wholeView: UIView!
+    private var headerWrapperView: UIView!
     private var imageView: UIImageView!
     private var priceLabel: UILabel!
     private var titleLabel: UILabel!
@@ -31,42 +33,68 @@ class ProductCell: UICollectionViewCell {
     }
     
     private func setup() {
+        initShadowView()
         initWholeView()
+        initHeaderWrapperView()
         initImageView()
         initTitleLabel()
         initPriceLabel()
     }
     
+    private func initShadowView() {
+        shadowView = UIView()
+        
+        shadowView.backgroundColor = .clear
+        shadowView.layer.backgroundColor = UIColor.white.cgColor
+        shadowView.layer.cornerRadius = 8.0
+        shadowView.layer.shadowColor = Colors.lightGray.cgColor
+        shadowView.layer.shadowOpacity = 1.0
+        shadowView.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        shadowView.layer.shadowRadius = 3.0
+        shadowView.layer.masksToBounds = false
+        contentView.addSubview(shadowView)
+        
+        shadowView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8.0)
+            make.trailing.equalToSuperview().offset(-8.0)
+            make.bottom.equalToSuperview().offset(-8.0)
+            make.top.equalToSuperview().offset(8.0)
+        }
+    }
+    
     private func initWholeView() {
         wholeView = UIView()
-        contentView.addSubview(wholeView)
+        shadowView.addSubview(wholeView)
         wholeView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(8.0)
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-8.0)
+            make.edges.equalToSuperview()
         }
         
-        wholeView.cornerRadius = 8.0
-        wholeView.clipsToBounds = false
-        wholeView.layer.masksToBounds = false
-        wholeView.layer.shadowRadius = 3.0
-        wholeView.layer.shadowOpacity = 1.0
-        wholeView.layer.shadowColor = Colors.lightGray.cgColor
-        wholeView.layer.shadowOffset = CGSize(width: 0 , height: 2)
-        wholeView.backgroundColor = .white
+        wholeView.backgroundColor = .clear
+        wholeView.layer.backgroundColor = UIColor.white.cgColor
+        wholeView.layer.cornerRadius = 8.0
+        wholeView.layer.masksToBounds = true
         
+    }
+    
+    private func initHeaderWrapperView() {
+        headerWrapperView = UIView()
+        headerWrapperView.layer.masksToBounds = true
+        
+        wholeView.addSubview(headerWrapperView)
+        headerWrapperView.snp.makeConstraints { make in
+            make.top.leading.centerX.equalToSuperview()
+            make.height.equalTo(contentView.size.height * 0.6)
+        }
     }
     
     private func initImageView() {
         imageView = UIImageView()
         imageView.backgroundColor = Colors.greenBlue
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
-        wholeView.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFill
+        headerWrapperView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(contentView.size.height * 0.7)
+            make.edges.equalToSuperview()
         }
         
         wholeView.setNeedsLayout()

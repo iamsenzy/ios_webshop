@@ -29,9 +29,15 @@ final class SelectedCategoryPresenter {
     }
     
     func viewDidLoad() {
-        interactor.getProducts { [weak self] items in
-            self?.products = items
-            self?.view.reload()
+        
+        interactor.getDressesByCategory(category: 0) { [weak self] result in
+            switch result {
+            case .success(let dresses):
+                self?.products = dresses.data ?? []
+                self?.view.reload()
+            case .failure(let error):
+                log.debug(error.localizedDescription)
+            }
         }
     }
 }
