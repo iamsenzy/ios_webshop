@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import UIKit
 import ObjectMapper
 
 class ProductModel: NSObject, Mappable {
     var title: String?
     var desc: String?
-    var price: Int?
+    var price: Double?
     var imageUrl: String?
     var category: Int?
+    var image: UIImage?
     
-    convenience init(title: String? = "",price: Int? = 0, imageUrl: String? = "") {
+    convenience init(title: String? = "",price: Double? = 0, imageUrl: String? = "") {
         self.init()
         self.title = title
         self.price = price
@@ -37,6 +39,7 @@ class ProductModel: NSObject, Mappable {
         desc <- map["description"]
         category <- map["category"]
         price <- map["price"]
+        imageUrl <- map["url"]
     }
     
 }

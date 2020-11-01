@@ -23,6 +23,7 @@ final class SelectedCategoryViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Products"
         setup()
         presenter.viewDidLoad()
     }
@@ -35,11 +36,11 @@ final class SelectedCategoryViewController: BaseViewController {
         
         let flowLayout = UICollectionViewFlowLayout()
         
-        let paddingSpace = 16.0 * (itemsPerRow + 1)
+        let paddingSpace = 12.0 * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
-        flowLayout.itemSize = CGSize(width: widthPerItem, height: 280.0)
+        flowLayout.itemSize = CGSize(width: widthPerItem, height: 300.0)
         flowLayout.minimumLineSpacing = 0.0
         flowLayout.minimumInteritemSpacing = 0.0
         
@@ -80,11 +81,16 @@ extension SelectedCategoryViewController: UICollectionViewDelegate, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withClass: ProductCell.self, for: indexPath)
         cell.bind(presenter.getItem(indexPath.row))
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("I'm tapping the \(indexPath.item)")
+        if let cell = collectionView.cellForItem(at: indexPath) as? ProductCell {
+            presenter.setImageToModel(row: indexPath.row, image: cell.getImage() ?? UIImage())
+        }
+        presenter.itemSelected(indexPath.row)
     }
     
 }

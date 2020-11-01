@@ -11,7 +11,7 @@
 import UIKit
 
 protocol SelectedCategoryWireframeInterface: WireframeInterface {
-    func showSelectedProduct()
+    func showSelectedProduct(product: ProductModel)
 }
 
 protocol SelectedCategoryViewInterface: ViewInterface {
@@ -23,6 +23,7 @@ protocol SelectedCategoryPresenterInterface: PresenterInterface {
     func getItem(_ row: Int) -> ProductModel
     func getItems() -> [ProductModel]
     func itemSelected(_ row: Int)
+    func setImageToModel(row: Int, image: UIImage)
 }
 
 protocol SelectedCategoryInteractorInterface: InteractorInterface {

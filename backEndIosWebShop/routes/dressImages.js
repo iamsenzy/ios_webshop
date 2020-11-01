@@ -16,13 +16,40 @@ router.get('', function(req, res) {
 });
 
 //multer options
-const upload = multer({
-dest: 'images'
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'images/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + '.jpg')
+  }
 })
 
+var upload = multer({ storage: storage })
+
 // upload images
-router.post('/upload', upload.single('upload'), function(req, res) {
-    res.send()
+router.post('/upload', upload.single('image'), function(req, res, next) {
+    const file = req.file
+  if (!file) {
+    const error = new Error('Please upload a file')
+    error.httpStatusCode = 400
+    return next(error)
+  }
+
+  let sql = `INSERT INTO dressImages (url,dressId) VALUES (?)`;
+  let values = [
+    '/' + req.file.filename,
+    req.body.dressId
+  ];
+  db.query(sql, [values], function(err, data, fields) {
+    if (err) throw err;
+    res.json({
+      status: 200,
+      message: "New image added successfully"
+    })
+    
+  })
+
 });
 
 module.exports = router;

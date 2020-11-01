@@ -10,7 +10,7 @@ import UIKit
 
 protocol ProductCellBindable {
     var title: String? { get }
-    var price: Int? { get }
+    var price: Double? { get }
     var imageUrl: String? { get }
 }
 
@@ -83,7 +83,7 @@ class ProductCell: UICollectionViewCell {
         wholeView.addSubview(headerWrapperView)
         headerWrapperView.snp.makeConstraints { make in
             make.top.leading.centerX.equalToSuperview()
-            make.height.equalTo(contentView.size.height * 0.6)
+            make.height.equalTo(contentView.size.height * 0.66)
         }
     }
     
@@ -125,7 +125,7 @@ class ProductCell: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(4.0)
             make.leading.equalToSuperview().offset(8.0)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-8.0)
+            make.bottom.lessThanOrEqualToSuperview().offset(-8.0)
         }
     }
     
@@ -137,15 +137,21 @@ class ProductCell: UICollectionViewCell {
         
         titleLabel.text = model.title
         if let price = model.price {
-            priceLabel.text = price.string
+            
+            priceLabel.text = price.toCurrency()
         }
-        
-//        imageView.image = Download image
-        
+        if let path = model.imageUrl {
+            let imageUrl = Constants.baseURL + path
+            imageView.downloaded(from: imageUrl, contentMode: .scaleAspectFill)
+        }
         UIView.animate(withDuration: 0.5, animations: {
             self.setAllHidden( false )
         })
             
+    }
+    
+    func getImage() -> UIImage? {
+        imageView.image
     }
     
     func setAllHidden(_ hide: Bool ) {

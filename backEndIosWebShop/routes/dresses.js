@@ -9,7 +9,7 @@ const Dress = function(dress) {
 };
 
 router.get('', function(req, res) {
-  let sql = `SELECT * FROM dress`;
+  let sql = `SELECT d.id,d.name,d.description,d.category,d.price,i.url FROM dress d left outer join dressImages i on d.id = i.dressId`;
   db.query(sql, function(err, data, fields) {
     if (err) throw err;
     res.json({
@@ -32,7 +32,7 @@ router.post('', function (req, res) {
     if (err) throw err;
     res.json({
       status: 200,
-      message: "New categorie added successfully"
+      message: "New dress added successfully"
     })
   })
 })

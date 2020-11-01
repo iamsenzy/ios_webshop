@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class SelectedCategoryPresenter {
 
@@ -45,6 +46,10 @@ final class SelectedCategoryPresenter {
 // MARK: - Extensions -
 
 extension SelectedCategoryPresenter: SelectedCategoryPresenterInterface {
+    func setImageToModel(row: Int, image: UIImage) {
+        products[row].image = image
+    }
+    
     func getProductsCount() -> Int {
         products.count
     }
@@ -58,7 +63,7 @@ extension SelectedCategoryPresenter: SelectedCategoryPresenterInterface {
     }
     
     func itemSelected(_ row: Int) {
-        wireframe.showSelectedProduct()
+        wireframe.showSelectedProduct(product: products[row])
     }
     
 }

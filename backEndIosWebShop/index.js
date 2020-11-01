@@ -40,6 +40,7 @@ app.use(bodyParser.json());
 app.use('/categories', categoriesRouter);
 app.use('/dressImages', dressImagesRouter);
 app.use('/dresses', dressesRouter);
+app.use(express.static('images'));
 
 // starting the server
 app.listen( server.port , () => console.log(`Server started, listening port: ${server.port}`));

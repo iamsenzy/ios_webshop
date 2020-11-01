@@ -30,8 +30,11 @@ final class SelectedCategoryWireframe: BaseWireframe {
 // MARK: - Extensions -
 
 extension SelectedCategoryWireframe: SelectedCategoryWireframeInterface {
-    func showSelectedProduct() {
-        
+    func showSelectedProduct(product: ProductModel) {
+        let wireframe = ProductWireframe(product: product)
+        let vc = wireframe.viewController
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushWireframe(wireframe)
     }
     
 }

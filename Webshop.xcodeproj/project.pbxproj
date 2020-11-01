@@ -56,6 +56,13 @@
 		5E21411F253B225C000FD39C /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411A253B225C000FD39C /* Roboto-Bold.ttf */; };
 		5E214120253B225C000FD39C /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E21411B253B225C000FD39C /* Roboto-Black.ttf */; };
 		5E214123253B2402000FD39C /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E214122253B2402000FD39C /* CategoryModel.swift */; };
+		5E763A8F254EC2EC00E03BF9 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763A8E254EC2EC00E03BF9 /* UIImageView+Download.swift */; };
+		5E763ACA254EEB6B00E03BF9 /* ProductInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC5254EEB6B00E03BF9 /* ProductInterfaces.swift */; };
+		5E763ACB254EEB6B00E03BF9 /* ProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC6254EEB6B00E03BF9 /* ProductPresenter.swift */; };
+		5E763ACC254EEB6B00E03BF9 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC7254EEB6B00E03BF9 /* ProductViewController.swift */; };
+		5E763ACD254EEB6B00E03BF9 /* ProductInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC8254EEB6B00E03BF9 /* ProductInteractor.swift */; };
+		5E763ACE254EEB6B00E03BF9 /* ProductWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC9254EEB6B00E03BF9 /* ProductWireframe.swift */; };
+		5E763AD4254F17E700E03BF9 /* Double+ToCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AD3254F17E700E03BF9 /* Double+ToCurrency.swift */; };
 		5EA412C1253C55B5002B5145 /* SelectedCategoryInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */; };
 		5EA412C2253C55B5002B5145 /* SelectedCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */; };
 		5EA412C3253C55B5002B5145 /* SelectedCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */; };
@@ -124,6 +131,13 @@
 		5E21411A253B225C000FD39C /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5E21411B253B225C000FD39C /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
 		5E214122253B2402000FD39C /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		5E763A8E254EC2EC00E03BF9 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		5E763AC5254EEB6B00E03BF9 /* ProductInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInterfaces.swift; sourceTree = "<group>"; };
+		5E763AC6254EEB6B00E03BF9 /* ProductPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresenter.swift; sourceTree = "<group>"; };
+		5E763AC7254EEB6B00E03BF9 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		5E763AC8254EEB6B00E03BF9 /* ProductInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInteractor.swift; sourceTree = "<group>"; };
+		5E763AC9254EEB6B00E03BF9 /* ProductWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductWireframe.swift; sourceTree = "<group>"; };
+		5E763AD3254F17E700E03BF9 /* Double+ToCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ToCurrency.swift"; sourceTree = "<group>"; };
 		5EA412BC253C55B5002B5145 /* SelectedCategoryInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryInterfaces.swift; sourceTree = "<group>"; };
 		5EA412BD253C55B5002B5145 /* SelectedCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryPresenter.swift; sourceTree = "<group>"; };
 		5EA412BE253C55B5002B5145 /* SelectedCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCategoryViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +288,7 @@
 		1B0BFB4E23362FF90054E28A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5E763AC4254EEB5B00E03BF9 /* Product */,
 				5EA412BB253C559C002B5145 /* SelectedCategory */,
 				5E2140FA253B163D000FD39C /* Search */,
 				5E0B425D25377A5E003B792A /* Home */,
@@ -316,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				1BB2479423E6EE8000EBFD39 /* DataExtensions.swift */,
+				5E763AD3254F17E700E03BF9 /* Double+ToCurrency.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -351,6 +367,7 @@
 		5E0B4258253779DA003B792A /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5E763A8D254EC2D900E03BF9 /* UIImageView */,
 				5E21410B253B2046000FD39C /* UIView */,
 				5E0B427E253788E7003B792A /* UIColor */,
 				5E0B427D253788DD003B792A /* UIVIewController */,
@@ -434,6 +451,26 @@
 				5E21411B253B225C000FD39C /* Roboto-Black.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5E763A8D254EC2D900E03BF9 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				5E763A8E254EC2EC00E03BF9 /* UIImageView+Download.swift */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
+		5E763AC4254EEB5B00E03BF9 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				5E763AC5254EEB6B00E03BF9 /* ProductInterfaces.swift */,
+				5E763AC6254EEB6B00E03BF9 /* ProductPresenter.swift */,
+				5E763AC7254EEB6B00E03BF9 /* ProductViewController.swift */,
+				5E763AC8254EEB6B00E03BF9 /* ProductInteractor.swift */,
+				5E763AC9254EEB6B00E03BF9 /* ProductWireframe.swift */,
+			);
+			path = Product;
 			sourceTree = "<group>";
 		};
 		5EA412BB253C559C002B5145 /* SelectedCategory */ = {
@@ -623,6 +660,7 @@
 				1B0BFB572336303F0054E28A /* TabbarViewController.swift in Sources */,
 				1BDD46A223AFFEAE0020AC54 /* Constants.swift in Sources */,
 				1B0BFB3D23362A000054E28A /* FormatterInterface.swift in Sources */,
+				5E763ACC254EEB6B00E03BF9 /* ProductViewController.swift in Sources */,
 				5EA412C5253C55B5002B5145 /* SelectedCategoryWireframe.swift in Sources */,
 				1B0BFAFC233628850054E28A /* AppDelegate.swift in Sources */,
 				1B0BFB562336303F0054E28A /* TabbarPresenter.swift in Sources */,
@@ -634,6 +672,7 @@
 				1B0BFB30233629890054E28A /* Initializable.swift in Sources */,
 				1B0BFB4D23362F950054E28A /* LoggerInitializer.swift in Sources */,
 				5E0B428025378900003B792A /* UIColor+Hex.swift in Sources */,
+				5E763AD4254F17E700E03BF9 /* Double+ToCurrency.swift in Sources */,
 				5EC482CF254D71ED008A0D16 /* CategoryResponse.swift in Sources */,
 				5E214101253B164C000FD39C /* SearchPresenter.swift in Sources */,
 				5E214100253B164C000FD39C /* SearchInterfaces.swift in Sources */,
@@ -644,16 +683,21 @@
 				5EA412C2253C55B5002B5145 /* SelectedCategoryPresenter.swift in Sources */,
 				5E0B425A253779F0003B792A /* UIVIewController+KeyboardHide.swift in Sources */,
 				5EA412C4253C55B5002B5145 /* SelectedCategoryInteractor.swift in Sources */,
+				5E763A8F254EC2EC00E03BF9 /* UIImageView+Download.swift in Sources */,
+				5E763ACA254EEB6B00E03BF9 /* ProductInterfaces.swift in Sources */,
 				5E214123253B2402000FD39C /* CategoryModel.swift in Sources */,
 				1B0BFB582336303F0054E28A /* TabbarInterfaces.swift in Sources */,
 				5E0B426825377A70003B792A /* HomeWireframe.swift in Sources */,
 				1B0BFB3C23362A000054E28A /* InteractorInterface.swift in Sources */,
 				1B0BFB3A23362A000054E28A /* UIStoryboardExtension.swift in Sources */,
 				5E0B426625377A70003B792A /* HomeViewController.swift in Sources */,
+				5E763ACE254EEB6B00E03BF9 /* ProductWireframe.swift in Sources */,
+				5E763ACB254EEB6B00E03BF9 /* ProductPresenter.swift in Sources */,
 				5E214102253B164C000FD39C /* SearchViewController.swift in Sources */,
 				1B0BFB4723362B740054E28A /* BaseTabbarProtocolController.swift in Sources */,
 				5EA412E3253C5D82002B5145 /* ProductModel.swift in Sources */,
 				5E21410D253B205E000FD39C /* UIView+Rounded.swift in Sources */,
+				5E763ACD254EEB6B00E03BF9 /* ProductInteractor.swift in Sources */,
 				5EC482D2254DA86D008A0D16 /* DressResponse.swift in Sources */,
 				1B0BFB4A23362ECE0054E28A /* TabbarProtocol.swift in Sources */,
 				5EC482CA254D6B85008A0D16 /* RestClient+DressService.swift in Sources */,
@@ -739,7 +783,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -794,7 +838,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -812,7 +856,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2JGWGKUJ7;
 				INFOPLIST_FILE = Webshop/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -832,7 +876,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2JGWGKUJ7;
 				INFOPLIST_FILE = Webshop/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

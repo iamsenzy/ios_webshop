@@ -33,6 +33,7 @@ Temporary Items
 
 #node moduls
 node_modules/
+images/
 
 ### Xcode ###
 # Xcode
