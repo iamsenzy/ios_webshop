@@ -19,9 +19,9 @@ class BaseTabbarProtocolController: BaseViewController, TabbarProtocol {
     }
     
     func setTabbarItem() {
-        tabBarItem = UITabBarItem(title: titleText,
+        tabBarItem = UITabBarItem(title: "",
                                   image: tabbarImage?.withRenderingMode(.alwaysOriginal),
                                   selectedImage: selectedTabbarImage?.withRenderingMode(.alwaysOriginal))
-        tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        tabBarItem.imageInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
     }
 }

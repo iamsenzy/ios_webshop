@@ -12,10 +12,18 @@ import UIKit
 
 final class HomeViewController: BaseTabbarProtocolController {
 
-    private var tableView: UITableView!
+    private var scrollView: UIScrollView!
+    private var topLargeView: HomeLargeView!
     
-    override var titleText: String? {
-        return "Home"
+    private var stackViewLeft: UIStackView!
+    private var stackViewRight: UIStackView!
+    
+    override var tabbarImage: UIImage? {
+        UIImage(named: "b")
+    }
+    
+    override var selectedTabbarImage: UIImage? {
+        UIImage(named: "bGray")
     }
     
     // MARK: - Public properties -
@@ -31,23 +39,101 @@ final class HomeViewController: BaseTabbarProtocolController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        initNavigation()
     }
     
     private func setup() {
         initNavigation()
-        initTableView()
+        initScrollView()
+        initTopLargeView()
+        initStackViewLeft()
+        initStackViewRight()
     }
     
     private func initNavigation() {
-        navigationItem.title = "B My Webshop"
-        title = "B My Webshop"
+        navigationItem.title = "b the webshop"
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.font: UIFont(name: "Snell Roundhand", size: 40) ??
+                                         UIFont.systemFont(ofSize: 30)]
+
     }
     
-    private func initTableView() {
-        tableView = UITableView()
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    private func initScrollView() {
+        scrollView = UIScrollView()
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.top).offset(50.0)
+            make.leading.centerX.bottom.equalToSuperview()
+        }
+    }
+    
+    private func initTopLargeView() {
+        topLargeView = HomeLargeView()
+        scrollView.addSubview(topLargeView)
+        topLargeView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.height.equalTo(400.0)
+        }
+    }
+    
+    private func initStackViewLeft() {
+        stackViewLeft = UIStackView()
+        stackViewLeft.backgroundColor = .clear
+        scrollView.addSubview(stackViewLeft)
+        stackViewLeft.snp.makeConstraints { make in
+            make.top.equalTo(topLargeView.snp.bottom)
+            make.leading.equalToSuperview().offset(8.0)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        var top = stackViewLeft.snp.top
+        for index in 0...3 {
+            let small = HomeSmallWithLabelsView()
+            stackViewLeft.addSubview(small)
+            small.snp.makeConstraints { make in
+                make.width.height.equalTo(view.frame.width / 2 - 10.0)
+                if index == 0 {
+                    make.top.equalToSuperview().offset(8.0)
+                } else {
+                    make.top.equalTo(top).offset(8.0)
+                }
+                if index == 3 {
+                    make.bottom.equalToSuperview().offset(-8.0)
+                }
+            }
+            top = small.snp.bottom
+        }
+    }
+    
+    private func initStackViewRight() {
+        stackViewRight = UIStackView()
+        stackViewRight.backgroundColor = .clear
+        scrollView.addSubview(stackViewRight)
+        stackViewRight.snp.makeConstraints { make in
+            make.top.equalTo(topLargeView.snp.bottom)
+            make.leading.equalTo(view.snp.centerX).offset(2)
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        var top = stackViewRight.snp.top
+        for index in 0...3 {
+            let small = HomeSmallWithLabelsView()
+            stackViewRight.addSubview(small)
+            small.snp.makeConstraints { make in
+                make.width.height.equalTo(view.frame.width / 2 - 10.0)
+                if index == 0 {
+                    make.top.equalToSuperview().offset(8.0)
+                } else {
+                    make.top.equalTo(top).offset(8.0)
+                }
+                if index == 3 {
+                    make.bottom.equalToSuperview().offset(-8.0)
+                }
+            }
+            top = small.snp.bottom
         }
     }
 

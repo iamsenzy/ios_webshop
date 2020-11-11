@@ -71,7 +71,7 @@ final class ProductViewController: BaseViewController {
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top)
             make.leading.centerX.equalToSuperview()
-            make.height.equalTo(view.frame.height * 0.5)
+            make.height.equalTo(view.frame.height * 0.45)
         }
         
         view.layoutSubviews()
@@ -79,7 +79,7 @@ final class ProductViewController: BaseViewController {
     
     private func initPager() {
         pager = UIPageControl()
-        pager.numberOfPages = 4
+        pager.numberOfPages = presenter.getProduct().images?.count ?? 1
         if #available(iOS 14.0, *) {
             pager.backgroundStyle = .prominent
         } else {
@@ -95,18 +95,19 @@ final class ProductViewController: BaseViewController {
     
     func setupScreens() {
         var frame = CGRect.zero
-        for index in 0...4 {
-            frame.origin.x = scrollView.frame.size.width * CGFloat(index)
-            frame.size = scrollView.frame.size
+        if let imagesCount = presenter.getProduct().images?.count {
+            for index in 0...imagesCount - 1 {
+                frame.origin.x = scrollView.frame.size.width * CGFloat(index)
+                frame.size = scrollView.frame.size
+                
+                let imgView = UIImageView(frame: frame)
+                imgView.downloaded(from: Constants.baseURL+(presenter.getProduct().images?[index] ?? ""))
+                imgView.contentMode = .scaleAspectFill
+                scrollView.addSubview(imgView)
+            }
             
-            let imgView = UIImageView(frame: frame)
-            imgView.image = presenter.getProduct().image
-            imgView.contentMode = .scaleAspectFill
-            scrollView.addSubview(imgView)
+            scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(imagesCount)), height: scrollView.frame.size.height)
         }
-        
-        scrollView.contentSize = CGSize(width: (scrollView.frame.size.width * CGFloat(4)), height: scrollView.frame.size.height)
-        
     }
     
     private func initTitle() {
@@ -199,7 +200,7 @@ final class ProductViewController: BaseViewController {
         priceTitleLabel.textColor = Colors.lightGray
         view.addSubview(priceTitleLabel)
         priceTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(sizeLabel.snp.bottom).offset(50.0)
+            make.top.equalTo(sizeLabel.snp.bottom).offset(30.0)
             make.centerX.equalToSuperview()
         }
     }
@@ -221,7 +222,7 @@ final class ProductViewController: BaseViewController {
         button = UIButton()
         button.titleLabel?.font = FontDeliver.mediumRobotoFont(ofSize: 20.0)
         button.setTitle("ADD TO CART", for: .normal)
-        button.backgroundColor = Colors.lightGreen
+        button.backgroundColor = Colors.darkGray
         button.cornerRadius = 8.0
         button.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
         view.addSubview(button)
@@ -268,7 +269,7 @@ final class ProductViewController: BaseViewController {
     
     @objc
     private func addToCartTapped() {
-        
+        log.debug("AddToCartTapped")
     }
 }
 

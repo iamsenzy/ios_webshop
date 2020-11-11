@@ -14,15 +14,15 @@ class ProductModel: NSObject, Mappable {
     var title: String?
     var desc: String?
     var price: Double?
-    var imageUrl: String?
+    var images: [String]?
     var category: Int?
     var image: UIImage?
     
-    convenience init(title: String? = "",price: Double? = 0, imageUrl: String? = "") {
+    convenience init(title: String? = "",price: Double? = 0, images: [String]? = [""]) {
         self.init()
         self.title = title
         self.price = price
-        self.imageUrl = imageUrl
+        self.images = images
     }
     
     override init() {
@@ -39,7 +39,7 @@ class ProductModel: NSObject, Mappable {
         desc <- map["description"]
         category <- map["category"]
         price <- map["price"]
-        imageUrl <- map["url"]
+        images <- map["images"]
     }
     
 }

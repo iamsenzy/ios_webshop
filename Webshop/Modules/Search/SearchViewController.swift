@@ -15,8 +15,12 @@ final class SearchViewController: BaseTabbarProtocolController {
     private var searchController: UISearchController!
     private var tableView: UITableView!
     
-    override var titleText: String? {
-        return "Search"
+    override var tabbarImage: UIImage? {
+        UIImage(named: "search")
+    }
+    
+    override var selectedTabbarImage: UIImage? {
+        UIImage(named: "searchGray")
     }
     
     // MARK: - Public properties -
@@ -54,6 +58,10 @@ final class SearchViewController: BaseTabbarProtocolController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.isTranslucent = true
     }
     
     private func setup() {
@@ -64,7 +72,6 @@ final class SearchViewController: BaseTabbarProtocolController {
     
     private func initNavigation() {
         navigationItem.title = "Search"
-        title = "Search"
     }
     
     private func initSearchController() {

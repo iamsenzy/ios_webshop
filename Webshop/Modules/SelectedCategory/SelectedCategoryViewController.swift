@@ -11,21 +11,28 @@
 import UIKit
 
 final class SelectedCategoryViewController: BaseViewController {
-
+    
     private var collectionView: UICollectionView!
     private let itemsPerRow: CGFloat = 2
     
     // MARK: - Public properties -
-
+    
     var presenter: SelectedCategoryPresenterInterface!
-
+    
     // MARK: - Lifecycle -
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Products"
         setup()
         presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.isTranslucent = true
     }
     
     private func setup() {
@@ -57,7 +64,7 @@ final class SelectedCategoryViewController: BaseViewController {
             make.edges.equalToSuperview()
         }
     }
-
+    
 }
 
 // MARK: - Extensions -

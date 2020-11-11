@@ -8,10 +8,31 @@ const Dress = function(dress) {
   this.price = dress.price;
 };
 
-router.get('', function(req, res) {
-  let sql = `SELECT d.id,d.name,d.description,d.category,d.price,i.url FROM dress d left outer join dressImages i on d.id = i.dressId`;
-  db.query(sql, function(err, data, fields) {
+
+const getImages = async ( id ) => {
+    return new Promise(async(resolve, reject) => {
+  var images = [];
+  sql = `SELECT url FROM dressImages where dressId=${id}`;
+
+  await db.query(sql ,function(err, data, fields) {
+      Object.keys(data).forEach(function(key) {
+      images.push(data[key].url);
+ });
+ return resolve(images);
+  });
+})
+};
+
+
+router.get('', async function(req, res) {
+
+  let sql = `SELECT * FROM dress`;
+  db.query(sql, async function(err, data, fields) {
     if (err) throw err;
+
+    for (var i = 0; i < data.length; i++) {
+      data[i]["images"] = await getImages(data[i].id);
+    }
     res.json({
       status: 200,
       data,
@@ -19,6 +40,7 @@ router.get('', function(req, res) {
     })
   })
 });
+
 
 router.post('', function (req, res) {
   let sql = `INSERT INTO dress (name,description,category,price) VALUES (?)`;

@@ -49,9 +49,17 @@ extension TabbarPresenter: TabbarPresenterInterface {
         let searchNav = BaseNavigationController()
         searchNav.pushWireframe(SearchWireframe())
         
+        let cartNav = BaseNavigationController()
+        cartNav.pushWireframe(CartWireframe())
+        
+        let profileNav = BaseNavigationController()
+        profileNav.pushWireframe(ProfileWireframe())
+        
         let controllers: [UIViewController] = [
             homeNav,
-            searchNav
+            searchNav,
+            cartNav,
+            profileNav
         ]
         
         return controllers
