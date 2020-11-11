@@ -1,14 +1,6 @@
 const express = require('express'),
   router = express.Router();
 
-const Dress = function(dress) {
-  this.name = dress.name;
-  this.description = dress.description;
-  this.category = dress.category;
-  this.price = dress.price;
-};
-
-
 const getImages = async ( id ) => {
     return new Promise(async(resolve, reject) => {
   var images = [];
@@ -22,7 +14,6 @@ const getImages = async ( id ) => {
   });
 })
 };
-
 
 router.get('', async function(req, res) {
 
@@ -41,6 +32,30 @@ router.get('', async function(req, res) {
   })
 });
 
+router.get('/:id', async function(req, res) {
+  let sql = `SELECT * FROM dress where id = ${req.params.id}`;
+  db.query(sql, async function(err, data, fields) {
+    if (err) throw err;
+
+    for (var i = 0; i < data.length; i++) {
+      data[i]["images"] = await getImages(data[i].id);
+    }
+
+    if (data.length <= 0) {
+      res.json({
+        status: 400,
+        message: "Dress not found :("
+      })
+    } else {
+      res.json({
+        status: 200,
+        data,
+        message: "One Dress retrieved successfully"
+      })
+    }
+  })
+});
+
 
 router.post('', function (req, res) {
   let sql = `INSERT INTO dress (name,description,category,price) VALUES (?)`;
@@ -55,6 +70,34 @@ router.post('', function (req, res) {
     res.json({
       status: 200,
       message: "New dress added successfully"
+    })
+  })
+})
+
+router.delete('/:id', async function(req, res) {
+  let sql = `Delete FROM dress where id = ${req.params.id}`;
+  db.query(sql, async function(err, data, fields) {
+    if (err) throw err;
+
+    let sql = `DELETE FROM dressImages WHERE dressId = ${req.params.id}`;
+    db.query(sql, async function(err, data, fields) {
+      if (err) throw err;
+    })
+
+      res.json({
+        status: 200,
+        message: "Dress deleted successfully"
+      })
+    })
+});
+
+router.put('/:id', function (req, res) {
+  let sql = `UPDATE dress SET ? WHERE id = ${req.params.id}`;
+  db.query(sql, req.body, function(err, data, fields) {
+    if (err) throw err;
+    res.json({
+      status: 200,
+      message: "One dress successfully updated"
     })
   })
 })
