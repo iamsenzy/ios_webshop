@@ -29,4 +29,16 @@ router.post('/new', function(req, res) {
   })
 });
 
+router.delete('/:id', async function(req, res) {
+    let sql = `Delete FROM categories where id = ${req.params.id}`;
+    db.query(sql, async function(err, data, fields) {
+      if (err) throw err;
+
+        res.json({
+          status: 200,
+          message: "Categorie deleted successfully"
+        })
+      })
+  });
+
 module.exports = router;

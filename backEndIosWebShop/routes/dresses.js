@@ -72,7 +72,7 @@ router.post('', function (req, res) {
       message: "New dress added successfully"
     })
   })
-})
+});
 
 router.delete('/:id', async function(req, res) {
   let sql = `Delete FROM dress where id = ${req.params.id}`;
@@ -100,6 +100,6 @@ router.put('/:id', function (req, res) {
       message: "One dress successfully updated"
     })
   })
-})
+});
 
 module.exports = router;
