@@ -11,9 +11,14 @@
 import Foundation
 
 final class TabbarInteractor {
+    private var profileProvider: ProfileService = RestClient.shared
 }
 
 // MARK: - Extensions -
 
 extension TabbarInteractor: TabbarInteractorInterface {
+    func getProfile(profileId: Int, completion: @escaping ProfileLoaded) {
+        profileProvider.getProfile(profileId: profileId) { completion($0) }
+    }
+    
 }

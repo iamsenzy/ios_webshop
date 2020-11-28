@@ -32,9 +32,8 @@ const categoriesRouter = require('./routes/categories');
 const dressImagesRouter = require('./routes/dressImages');
 const dressesRouter = require('./routes/dresses');
 const customersRouter = require('./routes/customers');
-const dressSizesRouter = require('./routes/dressSize');
-const purchaseRouter = require('./routes/purchase');
-const purchaseDetailsRouter = require('./routes/purchaseDetails');
+const cartRouter = require('./routes/cart');
+const ordersRouter = require('./routes/orders');
 
 // use the modules
 app.use(cors())
@@ -45,9 +44,8 @@ app.use('/categories', categoriesRouter);
 app.use('/dressImages', dressImagesRouter);
 app.use('/dresses', dressesRouter);
 app.use('/customers', customersRouter);
-app.use('/dressSizes', dressSizesRouter);
-app.use('/purchase', purchaseRouter);
-app.use('/purchaseDetails', purchaseDetailsRouter);
+app.use('/cart', cartRouter);
+app.use('/orders', ordersRouter);
 app.use(express.static('images'));
 
 // starting the server

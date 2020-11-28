@@ -17,6 +17,8 @@ final class CartPresenter {
     private unowned let view: CartViewInterface
     private let interactor: CartInteractorInterface
     private let wireframe: CartWireframeInterface
+    
+    private var products: [ProductModel]?
 
     // MARK: - Lifecycle -
 
@@ -25,9 +27,46 @@ final class CartPresenter {
         self.interactor = interactor
         self.wireframe = wireframe
     }
+    
+    func viewDidLoad() {
+        interactor.getProducts(customerId: 2) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.products = response.data
+                self?.view.reload()
+            case .failure(let error):
+                log.error(error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - Extensions -
 
 extension CartPresenter: CartPresenterInterface {
+    func getItem(row: Int) -> ProductModel {
+        if let products = products, !products.isEmpty {
+            return products[row]
+        }
+        return ProductModel()
+    }
+    
+    func getProductsCount() -> Int {
+        products?.count ?? 0
+    }
+    
+    func removeProduct(row: Int) {
+        if let orderId = products?[row].orderId {
+            interactor.removeProduct(orderId: orderId) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.products?.remove(at: row)
+                    self?.view.removeProduct(row: row)
+                case .failure(let error):
+                    log.error(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
 }

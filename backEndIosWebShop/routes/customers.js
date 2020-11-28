@@ -15,6 +15,7 @@ const express = require('express'),
       if (err) throw err;
       res.json({
         status: 200,
+        data: data.insertId,
         message: "New customer added successfully"
       })
     })
@@ -26,6 +27,21 @@ const express = require('express'),
     db.query(sql, async function(err, data, fields) {
       if (err) throw err;
 
+      res.json({
+        status: 200,
+        data,
+        message: "Customer lists retrieved successfully"
+      })
+    })
+  });
+
+  router.post('/email', async function(req, res) {
+
+    let email = req.body.email;
+    console.log(email);
+    let sql = `SELECT * FROM customer where email = ${email}`;
+    db.query(sql, async function(err, data, fields) {
+      if (err) throw err;
       res.json({
         status: 200,
         data,

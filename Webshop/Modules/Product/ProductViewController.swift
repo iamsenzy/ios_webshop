@@ -95,7 +95,7 @@ final class ProductViewController: BaseViewController {
     
     func setupScreens() {
         var frame = CGRect.zero
-        if let imagesCount = presenter.getProduct().images?.count {
+        if let imagesCount = presenter.getProduct().images?.count, imagesCount != 0 {
             for index in 0...imagesCount - 1 {
                 frame.origin.x = scrollView.frame.size.width * CGFloat(index)
                 frame.size = scrollView.frame.size

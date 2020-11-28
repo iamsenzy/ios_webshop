@@ -11,9 +11,18 @@
 import Foundation
 
 final class CartInteractor {
+    private var cartProvider: CartService = RestClient.shared
 }
 
 // MARK: - Extensions -
 
 extension CartInteractor: CartInteractorInterface {
+    func getProducts(customerId: Int, completion: @escaping CartLoaded) {
+        cartProvider.getProducts(customerId: customerId) { completion($0) }
+    }
+    
+    func removeProduct(orderId: Int, completion: @escaping CartLoaded) {
+        cartProvider.remove(orderId: orderId) { completion($0) }
+    }
+    
 }

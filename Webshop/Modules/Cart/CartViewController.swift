@@ -23,12 +23,16 @@ final class CartViewController: BaseTabbarProtocolController {
     }
 
     var presenter: CartPresenterInterface!
+    
+    private var tableView: UITableView!
 
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title =  "Cart"
+        setup()
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +40,36 @@ final class CartViewController: BaseTabbarProtocolController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = true
+        
+        if tableView != nil {
+            presenter.viewDidLoad()
+        }
+    }
+    
+    private func setup() {
+        initTableView()
+    }
+    
+    private func initTableView() {
+        tableView = UITableView(frame: .zero, style: .plain)
+        tableView.separatorStyle = .singleLine
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = .clear
+        tableView.clipsToBounds = true
+        tableView.register(cellWithClass: CartCell.self)
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
+        let orderButton = FooterButtonView(frame: .zero)
+        orderButton.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200.0)
+        orderButton.bind("ORDER")
+        orderButton.delegate = self
+        tableView.tableFooterView = orderButton
+    
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
 }
@@ -43,4 +77,47 @@ final class CartViewController: BaseTabbarProtocolController {
 // MARK: - Extensions -
 
 extension CartViewController: CartViewInterface {
+    func removeProduct(row: Int) {
+        tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+    }
+    
+    func reload() {
+        tableView.reloadData()
+    }
+    
+}
+
+extension CartViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.getProductsCount()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withClass: CartCell.self)
+        let model = presenter.getItem(row: indexPath.row)
+        if model.title != nil || model.title != "" {
+            cell.bind(model: model)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            self.presenter.removeProduct(row: indexPath.row)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+}
+
+extension CartViewController: FooterButtonViewDelegate {
+    func footerButtonTapped() {
+        log.debug("ORDER")
+    }
 }

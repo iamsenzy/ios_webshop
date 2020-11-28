@@ -29,6 +29,7 @@ final class TabbarPresenter: NSObject {
         self.wireframe = wireframe
         self.selectedTab = selectedTab
     }
+    
 }
 
 // MARK: - Extensions -
@@ -39,6 +40,17 @@ extension TabbarPresenter: TabbarPresenterInterface {
         view.set(controllers: setupViewControllers())
         view.select(tab: selectedTab)
         
+        let userId = UserDefaults.standard.integer(forKey: Constants.UserDefaults.UserId)
+        interactor.getProfile(profileId: userId) { result in
+            switch result {
+            case .success(let profileResponse):
+                if let user = profileResponse.data?[0] {
+                    UserManager.shared.loggedInUser = user
+                }
+            case .failure(let error):
+                log.error(error.localizedDescription)
+            }
+        }
     }
     
     func setupViewControllers() -> [UIViewController] {

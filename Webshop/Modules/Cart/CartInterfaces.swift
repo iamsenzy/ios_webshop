@@ -14,10 +14,17 @@ protocol CartWireframeInterface: WireframeInterface {
 }
 
 protocol CartViewInterface: ViewInterface {
+    func reload()
+    func removeProduct(row: Int)
 }
 
 protocol CartPresenterInterface: PresenterInterface {
+    func getProductsCount() -> Int
+    func getItem(row: Int) -> ProductModel
+    func removeProduct(row: Int)
 }
 
 protocol CartInteractorInterface: InteractorInterface {
+    func getProducts(customerId: Int, completion: @escaping CartLoaded )
+    func removeProduct(orderId: Int, completion: @escaping CartLoaded )
 }

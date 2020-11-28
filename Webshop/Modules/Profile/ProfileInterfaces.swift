@@ -14,10 +14,18 @@ protocol ProfileWireframeInterface: WireframeInterface {
 }
 
 protocol ProfileViewInterface: ViewInterface {
+    func bind(user: User)
+    func changeTextFieldState(state: TextFieldState, tag: Int)
 }
 
 protocol ProfilePresenterInterface: PresenterInterface {
+    func saveButtonTapped()
+    func textFieldChanged(text: String, tag: Int)
 }
 
 protocol ProfileInteractorInterface: InteractorInterface {
+    func createProfile(data: User, completion: @escaping  ProfileLoaded)
+    func getProfile(profileId: Int, completion: @escaping  ProfileLoaded)
+    func getProfileByEmail(email: String, completion: @escaping  ProfileLoaded)
+    func updateProfile(data: User, completion: @escaping  ProfileLoaded)
 }

@@ -12,6 +12,7 @@ protocol ProductCellBindable {
     var title: String? { get }
     var price: Double? { get }
     var images: [String]? { get }
+    var quantity: Int? { get }
 }
 
 class ProductCell: UICollectionViewCell {
@@ -140,7 +141,7 @@ class ProductCell: UICollectionViewCell {
             
             priceLabel.text = price.toCurrency()
         }
-        if let path = model.images?[0] {
+        if !(model.images?.isEmpty ?? true), let path = model.images?[0] {
             let imageUrl = Constants.baseURL + path
             imageView.downloaded(from: imageUrl, contentMode: .scaleAspectFill)
         }

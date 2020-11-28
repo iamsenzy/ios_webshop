@@ -13,10 +13,11 @@ let kAppDelegate = UIApplication.shared.delegate as! AppDelegate
 
 struct Constants {
     
-//    static let baseURL = "http://gesztibence-ceb1b1d7.localhost.run" // public
+//    static let baseURL = "http://gesztibence-954a063b.localhost.run" // public
     static let baseURL = "http://localhost:4040" // localhost
     
     struct UserDefaults {
         static let ApiKey = "ApiKey"
+        static let UserId = "UserId"
     }
 }

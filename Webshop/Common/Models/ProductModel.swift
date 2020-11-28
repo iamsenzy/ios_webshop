@@ -18,6 +18,9 @@ class ProductModel: NSObject, Mappable {
     var category: Int?
     var image: UIImage?
     
+    var quantity: Int?
+    var orderId: Int?
+    
     convenience init(title: String? = "",price: Double? = 0, images: [String]? = [""]) {
         self.init()
         self.title = title
@@ -40,6 +43,8 @@ class ProductModel: NSObject, Mappable {
         category <- map["category"]
         price <- map["price"]
         images <- map["images"]
+        quantity <- map["quantity"]
+        orderId <- map["orderId"]
     }
     
 }
