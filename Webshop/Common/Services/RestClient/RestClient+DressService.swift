@@ -16,7 +16,7 @@ protocol DressService: class {
 
 extension RestClient: DressService {
     func getDressesByCategory(category: Int, completion: @escaping DressesLoaded) {
-        let url = "\(Constants.baseURL)/dresses"
+        let url = "\(Constants.baseURL)/dresses?category=\(category)"
         request(url: url, method: .get, data: nil) { (result: Result<DressResponse, Error>) in
             completion(result)
         }

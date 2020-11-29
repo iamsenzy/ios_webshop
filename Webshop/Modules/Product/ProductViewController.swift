@@ -80,6 +80,7 @@ final class ProductViewController: BaseViewController {
     private func initPager() {
         pager = UIPageControl()
         pager.numberOfPages = presenter.getProduct().images?.count ?? 1
+        if pager.numberOfPages <= 1 { return }
         if #available(iOS 14.0, *) {
             pager.backgroundStyle = .prominent
         } else {
@@ -269,7 +270,7 @@ final class ProductViewController: BaseViewController {
     
     @objc
     private func addToCartTapped() {
-        log.debug("AddToCartTapped")
+        presenter.addToCartTapped()
     }
 }
 

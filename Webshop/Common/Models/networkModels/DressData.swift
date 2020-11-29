@@ -10,6 +10,6 @@ import Foundation
 
 class DressData: Encodable {
     var quantity: Int?
-    var dressId: String?
+    var dressId: Int?
     var cartId: Int?
 }

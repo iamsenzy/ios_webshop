@@ -15,14 +15,13 @@ const express = require('express'),
       if (err) throw err;
       res.json({
         status: 200,
-        data: data.insertId,
+        userId: data.insertId,
         message: "New customer added successfully"
       })
     })
   });
 
   router.get('', async function(req, res) {
-
     let sql = `SELECT * FROM customer`;
     db.query(sql, async function(err, data, fields) {
       if (err) throw err;
@@ -38,15 +37,22 @@ const express = require('express'),
   router.post('/email', async function(req, res) {
 
     let email = req.body.email;
-    console.log(email);
-    let sql = `SELECT * FROM customer where email = ${email}`;
+    let sql = `SELECT * FROM customer where email = "${email}"`;
     db.query(sql, async function(err, data, fields) {
       if (err) throw err;
-      res.json({
-        status: 200,
-        data,
-        message: "Customer lists retrieved successfully"
-      })
+
+      if (data.length <= 0) {
+        res.json({
+          status: 400,
+          message: "Customer not found :("
+        })
+      } else {
+        res.json({
+          status: 200,
+          data,
+          message: "One customer with this email successfully"
+        })
+      }
     })
   });
 

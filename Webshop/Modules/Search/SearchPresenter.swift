@@ -46,8 +46,12 @@ final class SearchPresenter {
 // MARK: - Extensions -
 
 extension SearchPresenter: SearchPresenterInterface {
+    func itemSelectedWithModel(_ model: CategoryModel) {
+        wireframe.showSelectedCategory(category: model )
+    }
+    
     func itemSelected(_ row: Int) {
-        wireframe.showSelectedCategory()
+        wireframe.showSelectedCategory(category: categories[row] )
     }
     
     func getItems() -> [CategoryModel] {

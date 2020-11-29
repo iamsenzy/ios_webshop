@@ -23,7 +23,7 @@ final class SelectedCategoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Products"
+        title = presenter.getTitle()
         setup()
         presenter.viewDidLoad()
     }

@@ -20,11 +20,4 @@ extension SearchInteractor: SearchInteractorInterface {
     func getCategories(completion: @escaping CategoryLoaded) {
         dressProvider.getCategories { completion($0) }
     }
-    
-    func getSearchCells(completion: @escaping ([CategoryModel]) -> Void ) {
-        var searchCells = [CategoryModel()]
-        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
-            completion(searchCells)
-        }
-    }
 }

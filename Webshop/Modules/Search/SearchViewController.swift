@@ -52,13 +52,13 @@ final class SearchViewController: BaseTabbarProtocolController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        presenter.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        presenter.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = true
@@ -123,7 +123,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.itemSelected(indexPath.row)
+        if isFiltering {
+            presenter.itemSelectedWithModel(filteredCategory[indexPath.row])
+        } else {
+            presenter.itemSelected(indexPath.row)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

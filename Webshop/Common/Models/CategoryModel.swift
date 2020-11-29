@@ -11,6 +11,7 @@ import ObjectMapper
 
 class CategoryModel: NSObject, Mappable {
    
+    var id: Int?
     var title: String?
     var imageUrl: String? = nil
     
@@ -31,6 +32,7 @@ class CategoryModel: NSObject, Mappable {
     
     func mapping(map: Map) {
         title <- map["name"]
+        id <- map["id"]
     }
     
 }

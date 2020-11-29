@@ -11,9 +11,14 @@
 import Foundation
 
 final class ProductInteractor {
+    private var cartProvider: CartService = RestClient.shared
 }
 
 // MARK: - Extensions -
 
 extension ProductInteractor: ProductInteractorInterface {
+    func add(data: DressData, completion: @escaping CartLoaded) {
+        cartProvider.add(data: data) { completion($0) }
+    }
+    
 }

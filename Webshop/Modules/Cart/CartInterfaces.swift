@@ -22,9 +22,11 @@ protocol CartPresenterInterface: PresenterInterface {
     func getProductsCount() -> Int
     func getItem(row: Int) -> ProductModel
     func removeProduct(row: Int)
+    func orderButtonTapped()
 }
 
 protocol CartInteractorInterface: InteractorInterface {
     func getProducts(customerId: Int, completion: @escaping CartLoaded )
     func removeProduct(orderId: Int, completion: @escaping CartLoaded )
+    func updateCart(customerId: Int, completion: @escaping CartUpdated)
 }

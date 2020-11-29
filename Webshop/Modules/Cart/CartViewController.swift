@@ -118,6 +118,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension CartViewController: FooterButtonViewDelegate {
     func footerButtonTapped() {
-        log.debug("ORDER")
+        presenter.orderButtonTapped()
     }
 }

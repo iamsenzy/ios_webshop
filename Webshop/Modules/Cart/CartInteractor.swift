@@ -17,6 +17,10 @@ final class CartInteractor {
 // MARK: - Extensions -
 
 extension CartInteractor: CartInteractorInterface {
+    func updateCart(customerId: Int, completion: @escaping CartUpdated) {
+        cartProvider.updateCart(customerId: customerId) { completion($0) }
+    }
+    
     func getProducts(customerId: Int, completion: @escaping CartLoaded) {
         cartProvider.getProducts(customerId: customerId) { completion($0) }
     }

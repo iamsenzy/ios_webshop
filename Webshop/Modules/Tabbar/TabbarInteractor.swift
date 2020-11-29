@@ -12,11 +12,15 @@ import Foundation
 
 final class TabbarInteractor {
     private var profileProvider: ProfileService = RestClient.shared
+    private var cartProvider: CartService = RestClient.shared
 }
 
 // MARK: - Extensions -
 
 extension TabbarInteractor: TabbarInteractorInterface {
+    func createCart(customerId: Int, completion: @escaping CartUpdated) {
+        cartProvider.createCart(customerId: customerId) { completion($0) }
+    }
     func getProfile(profileId: Int, completion: @escaping ProfileLoaded) {
         profileProvider.getProfile(profileId: profileId) { completion($0) }
     }

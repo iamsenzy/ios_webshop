@@ -26,6 +26,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     
     private var scrollView: UIScrollView!
     
+    private var logutButton: UIButton!
     private var nameView: TextFieldWithTitle!
     private var emailView: TextFieldWithTitle!
     private var phoneView: TextFieldWithTitle!
@@ -48,10 +49,12 @@ final class ProfileViewController: BaseTabbarProtocolController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = true
+        initLogoutButton()
     }
     
     private func setup() {
         initScrollView()
+        initLogoutButton()
         initNameView()
         initEmailView()
         initPhoneView()
@@ -69,6 +72,15 @@ final class ProfileViewController: BaseTabbarProtocolController {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func initLogoutButton() {
+        if presenter.logdInUser() {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
+        
     }
     
     private func initNameView() {
@@ -158,6 +170,11 @@ final class ProfileViewController: BaseTabbarProtocolController {
     }
     
     @objc
+    private func logoutButtonTapped() {
+        presenter.logoutButtonTapped()
+    }
+    
+    @objc
     private func saveButtonTapped() {
         presenter.saveButtonTapped()
     }
@@ -193,6 +210,8 @@ extension ProfileViewController: ProfileViewInterface {
         postNumberView.setInputText(text: user.postNumber?.string ?? "")
         cityView.setInputText(text: user.city ?? "")
         addressView.setInputText(text: user.address ?? "")
+        
+        initLogoutButton()
     }
 }
 

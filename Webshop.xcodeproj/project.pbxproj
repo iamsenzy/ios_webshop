@@ -79,6 +79,7 @@
 		5E48BF6A2556D4AD0095513D /* ProfileWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BF652556D4AD0095513D /* ProfileWireframe.swift */; };
 		5E48BF6D2556D6440095513D /* HomeLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BF6C2556D6440095513D /* HomeLargeView.swift */; };
 		5E48BF70255720A60095513D /* HomeSmallWithLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E48BF6F255720A60095513D /* HomeSmallWithLabelsView.swift */; };
+		5E5176F1257255A200410E0B /* CartResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5176F0257255A200410E0B /* CartResponse.swift */; };
 		5E763A8F254EC2EC00E03BF9 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763A8E254EC2EC00E03BF9 /* UIImageView+Download.swift */; };
 		5E763ACA254EEB6B00E03BF9 /* ProductInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC5254EEB6B00E03BF9 /* ProductInterfaces.swift */; };
 		5E763ACB254EEB6B00E03BF9 /* ProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E763AC6254EEB6B00E03BF9 /* ProductPresenter.swift */; };
@@ -178,6 +179,7 @@
 		5E48BF652556D4AD0095513D /* ProfileWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWireframe.swift; sourceTree = "<group>"; };
 		5E48BF6C2556D6440095513D /* HomeLargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLargeView.swift; sourceTree = "<group>"; };
 		5E48BF6F255720A60095513D /* HomeSmallWithLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSmallWithLabelsView.swift; sourceTree = "<group>"; };
+		5E5176F0257255A200410E0B /* CartResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartResponse.swift; sourceTree = "<group>"; };
 		5E763A8E254EC2EC00E03BF9 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		5E763AC5254EEB6B00E03BF9 /* ProductInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInterfaces.swift; sourceTree = "<group>"; };
 		5E763AC6254EEB6B00E03BF9 /* ProductPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPresenter.swift; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				5EC482CE254D71ED008A0D16 /* CategoryResponse.swift */,
 				5EC482D1254DA86D008A0D16 /* DressResponse.swift */,
 				5E03F0C525694FE300B2132A /* ProfileResponse.swift */,
+				5E5176F0257255A200410E0B /* CartResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				5EC482D2254DA86D008A0D16 /* DressResponse.swift in Sources */,
 				1B0BFB4A23362ECE0054E28A /* TabbarProtocol.swift in Sources */,
 				5EC482CA254D6B85008A0D16 /* RestClient+DressService.swift in Sources */,
+				5E5176F1257255A200410E0B /* CartResponse.swift in Sources */,
 				1B0BFB592336303F0054E28A /* TabbarWireframe.swift in Sources */,
 				1B0BFB4523362B740054E28A /* BaseResponse.swift in Sources */,
 				5E214110253B2187000FD39C /* UIView+Shadow.swift in Sources */,
@@ -973,6 +977,7 @@
 			baseConfigurationReference = EDAF428ED2EC28A5D3A3B389 /* Pods-Webshop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2JGWGKUJ7;
 				INFOPLIST_FILE = Webshop/SupportingFiles/Info.plist;
@@ -983,6 +988,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gesben.Webshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -993,6 +999,7 @@
 			baseConfigurationReference = B41CAEEC061AE32803DA046C /* Pods-Webshop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H2JGWGKUJ7;
 				INFOPLIST_FILE = Webshop/SupportingFiles/Info.plist;
@@ -1003,6 +1010,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gesben.Webshop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -16,12 +16,12 @@ final class SelectedCategoryWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    init() {
+    init(category: CategoryModel? = nil) {
         let moduleViewController = SelectedCategoryViewController()
         super.init(viewController: moduleViewController)
 
         let interactor = SelectedCategoryInteractor()
-        let presenter = SelectedCategoryPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
+        let presenter = SelectedCategoryPresenter(view: moduleViewController, interactor: interactor, wireframe: self, category: category)
         moduleViewController.presenter = presenter
     }
 

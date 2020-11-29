@@ -20,6 +20,7 @@ final class UserManager {
             UserDefaults.standard.set( loggedInUser?.id, forKey: Constants.UserDefaults.UserId)
             let logMessage = UserDefaults.standard.string(forKey: Constants.UserDefaults.UserId) ?? "No logged in user find"
             log.debug(logMessage)
+            log.debug(loggedInUser?.cartId)
         }
     }
     

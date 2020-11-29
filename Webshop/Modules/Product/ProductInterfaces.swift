@@ -18,7 +18,9 @@ protocol ProductViewInterface: ViewInterface {
 
 protocol ProductPresenterInterface: PresenterInterface {
     func getProduct() -> ProductModel
+    func addToCartTapped()
 }
 
 protocol ProductInteractorInterface: InteractorInterface {
+    func add(data: DressData, completion: @escaping CartLoaded )
 }

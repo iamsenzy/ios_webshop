@@ -15,6 +15,7 @@ typealias CategoryLoaded = (Result<CategoryResponse, Error>) -> Void
 typealias DressesLoaded = (Result<DressResponse, Error>) -> Void
 typealias CartLoaded = (Result<DressResponse, Error>) -> Void
 typealias ProfileLoaded = (Result<ProfileResponse, Error>) -> Void
+typealias CartUpdated = (Result<CartResponse, Error>) -> Void
 
 class RestClient {
     

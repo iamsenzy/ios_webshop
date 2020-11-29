@@ -29,7 +29,17 @@ final class CartPresenter {
     }
     
     func viewDidLoad() {
-        interactor.getProducts(customerId: 2) { [weak self] result in
+        loadItems()
+    }
+    
+    private func loadItems() {
+        guard let id = UserManager.shared.loggedInUser?.id else {
+            products = []
+            view.reload()
+            return
+        }
+        
+        interactor.getProducts(customerId: id) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.products = response.data
@@ -44,6 +54,21 @@ final class CartPresenter {
 // MARK: - Extensions -
 
 extension CartPresenter: CartPresenterInterface {
+    func orderButtonTapped() {
+        guard let id = UserManager.shared.loggedInUser?.id else { return }
+        interactor.updateCart(customerId: id) { [weak self] result in
+            switch result {
+            case .success(let cartResponse):
+                if let cartId = cartResponse.cartId {
+                    UserManager.shared.loggedInUser?.cartId = cartId
+                    self?.loadItems()
+                }
+            case .failure(let error):
+                log.error(error.localizedDescription)
+            }
+        }
+    }
+    
     func getItem(row: Int) -> ProductModel {
         if let products = products, !products.isEmpty {
             return products[row]

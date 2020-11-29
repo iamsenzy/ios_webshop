@@ -24,4 +24,5 @@ protocol TabbarPresenterInterface: PresenterInterface {
 
 protocol TabbarInteractorInterface: InteractorInterface {
     func getProfile(profileId: Int, completion: @escaping  ProfileLoaded)
+    func createCart(customerId: Int, completion: @escaping CartUpdated)
 }

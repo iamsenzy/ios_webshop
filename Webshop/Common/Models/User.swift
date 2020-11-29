@@ -31,7 +31,7 @@ class User: BaseResponse, Mappable, Encodable {
     var city: String?
     var address: String?
     
-    var cartID: Int?
+    var cartId: Int?
     
     func mapping(map: Map) {
         id <- map ["id"]

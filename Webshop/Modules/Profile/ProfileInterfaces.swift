@@ -21,6 +21,8 @@ protocol ProfileViewInterface: ViewInterface {
 protocol ProfilePresenterInterface: PresenterInterface {
     func saveButtonTapped()
     func textFieldChanged(text: String, tag: Int)
+    func logdInUser() -> Bool
+    func logoutButtonTapped()
 }
 
 protocol ProfileInteractorInterface: InteractorInterface {
@@ -28,4 +30,5 @@ protocol ProfileInteractorInterface: InteractorInterface {
     func getProfile(profileId: Int, completion: @escaping  ProfileLoaded)
     func getProfileByEmail(email: String, completion: @escaping  ProfileLoaded)
     func updateProfile(data: User, completion: @escaping  ProfileLoaded)
+    func createCart(customerId: Int, completion: @escaping CartUpdated)
 }

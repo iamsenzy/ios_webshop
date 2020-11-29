@@ -11,6 +11,7 @@ import UIKit
 import ObjectMapper
 
 class ProductModel: NSObject, Mappable {
+    var id: Int?
     var title: String?
     var desc: String?
     var price: Double?
@@ -38,6 +39,7 @@ class ProductModel: NSObject, Mappable {
     }
     
     func mapping(map: Map) {
+        id <- map["id"]
         title <- map["name"]
         desc <- map["description"]
         category <- map["category"]

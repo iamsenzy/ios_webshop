@@ -17,7 +17,16 @@ const getImages = async ( id ) => {
 
 router.get('', async function(req, res) {
 
-  let sql = `SELECT * FROM dress`;
+  var category = req.query.category;
+  var sql;
+  if(typeof category === "undefined")
+  {
+    sql = `SELECT * FROM dress`;
+  } else {
+    sql = `SELECT * FROM dress where category = ${category}`;
+  }
+
+
   db.query(sql, async function(err, data, fields) {
     if (err) throw err;
 

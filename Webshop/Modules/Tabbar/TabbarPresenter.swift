@@ -45,7 +45,15 @@ extension TabbarPresenter: TabbarPresenterInterface {
             switch result {
             case .success(let profileResponse):
                 if let user = profileResponse.data?[0] {
-                    UserManager.shared.loggedInUser = user
+                    self.interactor.createCart(customerId: user.id ?? 0) { cartResult in
+                        switch cartResult {
+                        case .success(let cartResponse):
+                            user.cartId = cartResponse.cartId
+                            UserManager.shared.loggedInUser = user
+                        case .failure(let error):
+                            log.error(error.localizedDescription)
+                        }
+                    }
                 }
             case .failure(let error):
                 log.error(error.localizedDescription)
