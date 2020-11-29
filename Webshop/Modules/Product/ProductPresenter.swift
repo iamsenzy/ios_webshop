@@ -33,18 +33,22 @@ final class ProductPresenter {
 // MARK: - Extensions -
 
 extension ProductPresenter: ProductPresenterInterface {
+    func goToCart() {
+        wireframe.goToCart()
+    }
+    
     func addToCartTapped() {
         guard let user = UserManager.shared.loggedInUser, let dressId = product?.id else { return }
         let dressData = DressData()
         dressData.cartId = user.cartId
         dressData.dressId = dressId
         dressData.quantity = 1
-
         interactor.add(data: dressData) { result in
             switch result {
             case .success(let response):
-                log.debug("+1 Cart")
+                self.view.stopAnimation(success: true)
             case .failure(let error):
+                self.view.stopAnimation(success: false)
                 log.error(error.localizedDescription)
             }
         }

@@ -10,6 +10,11 @@
 
 import UIKit
 
+enum ButtonState {
+    case addToCart
+    case goToCart
+}
+
 final class ProductViewController: BaseViewController {
     
     private var scrollView: UIScrollView!
@@ -23,7 +28,8 @@ final class ProductViewController: BaseViewController {
     private var priceTitleLabel: UILabel!
     private var priceLabel: UILabel!
     private var button: UIButton!
-    
+    private var indicator: UIActivityIndicatorView!
+    private var state: ButtonState = .addToCart
     private var separatorTop: UIView!
     private var separatorBottom: UIView!
     private var separatorHorizontal: UIView!
@@ -270,13 +276,50 @@ final class ProductViewController: BaseViewController {
     
     @objc
     private func addToCartTapped() {
-        presenter.addToCartTapped()
+        if state == .addToCart {
+            UIView.animate(withDuration: 0.3) {
+                self.button.titleLabel?.alpha = 0.0
+            } completion: { _ in
+                self.indicator = UIActivityIndicatorView()
+                self.indicator.style = .white
+                self.view.addSubview(self.indicator)
+                self.indicator.snp.makeConstraints { make in
+                    make.centerX.centerY.equalTo(self.button)
+                }
+                self.indicator.startAnimating()
+                self.presenter.addToCartTapped()
+            }
+        } else {
+            presenter.goToCart()
+        }
     }
 }
 
 // MARK: - Extensions -
 
 extension ProductViewController: ProductViewInterface {
+    func stopAnimation(success: Bool) {
+        if success {
+            button.setTitle("GO TO CART", for: .normal)
+            state = .goToCart
+        }
+        indicator.stopAnimating()
+        
+        if success {
+            UIView.transition(with: button, duration: 0.3, options: .transitionCrossDissolve) {
+                self.button.titleLabel?.alpha = 1.0
+                self.button.setTitleColor(Colors.darkGray, for: .normal)
+                self.button.borderWidth = 1.5
+                self.button.borderColor = Colors.darkGray
+                self.button.backgroundColor = .white
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.button.titleLabel?.alpha = 1.0
+            }
+        }
+    }
+    
 }
 
 extension ProductViewController: UIScrollViewDelegate {

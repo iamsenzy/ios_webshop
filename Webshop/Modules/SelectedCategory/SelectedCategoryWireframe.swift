@@ -12,6 +12,7 @@ import UIKit
 
 final class SelectedCategoryWireframe: BaseWireframe {
 
+    weak var tabbarProtocol: CustomTabbarProtocol?
     // MARK: - Private properties -
 
     // MARK: - Module setup -
@@ -32,6 +33,7 @@ final class SelectedCategoryWireframe: BaseWireframe {
 extension SelectedCategoryWireframe: SelectedCategoryWireframeInterface {
     func showSelectedProduct(product: ProductModel) {
         let wireframe = ProductWireframe(product: product)
+        wireframe.tabbarProtocol = self.tabbarProtocol
         let vc = wireframe.viewController
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushWireframe(wireframe)

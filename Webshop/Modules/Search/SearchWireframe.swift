@@ -12,14 +12,16 @@ import UIKit
 
 final class SearchWireframe: BaseWireframe {
 
+    weak var tabbarProtocol: CustomTabbarProtocol?
+    
     // MARK: - Private properties -
-
+    
     // MARK: - Module setup -
 
-    init() {
+    init(tabbarProtocol: CustomTabbarProtocol? = nil) {
         let moduleViewController = SearchViewController()
         super.init(viewController: moduleViewController)
-
+        self.tabbarProtocol = tabbarProtocol
         let interactor = SearchInteractor()
         let presenter = SearchPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
@@ -31,6 +33,8 @@ final class SearchWireframe: BaseWireframe {
 
 extension SearchWireframe: SearchWireframeInterface {
     func showSelectedCategory(category: CategoryModel) {
-        navigationController?.pushWireframe(SelectedCategoryWireframe(category: category))
+        let wireframe = SelectedCategoryWireframe(category: category)
+        wireframe.tabbarProtocol = self.tabbarProtocol
+        navigationController?.pushWireframe(wireframe)
     }
 }

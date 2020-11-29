@@ -12,8 +12,9 @@ import UIKit
 
 final class ProductWireframe: BaseWireframe {
 
+    weak var tabbarProtocol: CustomTabbarProtocol?
     // MARK: - Private properties -
-
+    
     // MARK: - Module setup -
 
     init(product: ProductModel? = nil) {
@@ -30,4 +31,10 @@ final class ProductWireframe: BaseWireframe {
 // MARK: - Extensions -
 
 extension ProductWireframe: ProductWireframeInterface {
+    func goToCart() {
+        navigationController?.popViewController(animated: true, {
+            self.tabbarProtocol?.goToTab(index: 2)
+        })
+    }
+    
 }

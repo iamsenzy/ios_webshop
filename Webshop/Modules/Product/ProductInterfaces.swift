@@ -11,14 +11,17 @@
 import UIKit
 
 protocol ProductWireframeInterface: WireframeInterface {
+    func goToCart()
 }
 
 protocol ProductViewInterface: ViewInterface {
+    func stopAnimation(success: Bool)
 }
 
 protocol ProductPresenterInterface: PresenterInterface {
     func getProduct() -> ProductModel
     func addToCartTapped()
+    func goToCart()
 }
 
 protocol ProductInteractorInterface: InteractorInterface {

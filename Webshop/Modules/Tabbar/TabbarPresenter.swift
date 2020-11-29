@@ -10,6 +10,10 @@
 
 import UIKit
 
+protocol CustomTabbarProtocol: class {
+    func goToTab(index: Int)
+}
+
 final class TabbarPresenter: NSObject {
     
     // MARK: - Public properties -
@@ -67,7 +71,7 @@ extension TabbarPresenter: TabbarPresenterInterface {
         homeNav.pushWireframe(HomeWireframe())
     
         let searchNav = BaseNavigationController()
-        searchNav.pushWireframe(SearchWireframe())
+        searchNav.pushWireframe(SearchWireframe(tabbarProtocol: self))
         
         let cartNav = BaseNavigationController()
         cartNav.pushWireframe(CartWireframe())
@@ -85,4 +89,10 @@ extension TabbarPresenter: TabbarPresenterInterface {
         return controllers
     }
     
+}
+
+extension TabbarPresenter: CustomTabbarProtocol {
+    func goToTab(index: Int) {
+        view.select(tab: index)
+    }
 }

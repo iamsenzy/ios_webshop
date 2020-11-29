@@ -42,7 +42,7 @@ const express = require('express'),
 
   router.post('/:id', async function(req, res) {
 
-    let sql = `SELECT * FROM cart where customerId = ${req.params.id}`;
+    let sql = `SELECT * FROM cart where customerId = ${req.params.id} and date is null`;
     db.query(sql,async function(err, data, fields) {
       if (err) throw err;
       let cartId = data.length > 0 ? data[0]["id"] : null;
