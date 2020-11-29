@@ -18,14 +18,18 @@ const getImages = async ( id ) => {
 router.get('', async function(req, res) {
 
   var category = req.query.category;
+  var latest = req.query.latest;
+  let isCategory = typeof category !== "undefined"
+  let isLatest = typeof latest !== "undefined"
   var sql;
-  if(typeof category === "undefined")
-  {
-    sql = `SELECT * FROM dress`;
-  } else {
-    sql = `SELECT * FROM dress where category = ${category}`;
-  }
 
+  if (isCategory) {
+    sql = `SELECT * FROM dress where category = ${category}`;
+  } else if (isLatest) {
+      sql = `SELECT * FROM dress order by id desc limit ${latest}`;
+  } else {
+    sql = `SELECT * FROM dress`;
+  }
 
   db.query(sql, async function(err, data, fields) {
     if (err) throw err;

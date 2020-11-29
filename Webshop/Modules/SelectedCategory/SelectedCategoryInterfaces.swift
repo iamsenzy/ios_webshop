@@ -29,4 +29,5 @@ protocol SelectedCategoryPresenterInterface: PresenterInterface {
 
 protocol SelectedCategoryInteractorInterface: InteractorInterface {
     func getDressesByCategory(category: Int ,completion: @escaping DressesLoaded)
+    func getLatestDresses(limit: Int, completion: @escaping DressesLoaded)
 }

@@ -10,10 +10,18 @@
 
 import UIKit
 
-final class SelectedCategoryViewController: BaseViewController {
+final class SelectedCategoryViewController: BaseTabbarProtocolController {
     
     private var collectionView: UICollectionView!
     private let itemsPerRow: CGFloat = 2
+    
+    override var tabbarImage: UIImage? {
+        UIImage(named: "b")
+    }
+    
+    override var selectedTabbarImage: UIImage? {
+        UIImage(named: "bGray")
+    }
     
     // MARK: - Public properties -
     
@@ -23,7 +31,7 @@ final class SelectedCategoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = presenter.getTitle()
+        navigationItem.title = presenter.getTitle()
         setup()
         presenter.viewDidLoad()
     }
@@ -58,7 +66,7 @@ final class SelectedCategoryViewController: BaseViewController {
         collectionView.register(cellWithClass: ProductCell.self)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 20.0, left: 16.0, bottom: 20.0, right: 16.0)
+        collectionView.contentInset = UIEdgeInsets(top: 20.0, left: 16.0, bottom: 50.0, right: 16.0)
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -75,7 +83,15 @@ extension SelectedCategoryViewController: SelectedCategoryViewInterface {
             UIView.animate(withDuration: 0.3, animations: {
                 self.collectionView.reloadData()
                 self.view.layoutIfNeeded()
-            })
+            }) { _ in
+                if self.presenter.getProductsCount() == 0 {
+                    self.collectionView.isHidden = true
+                    self.showEmptyView(titleText: "No items here yet :(")
+                } else {
+                    self.collectionView.isHidden = false
+                    self.hideEmptyView()
+                }
+            }
         }
     }
 }

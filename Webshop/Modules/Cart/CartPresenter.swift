@@ -61,7 +61,8 @@ extension CartPresenter: CartPresenterInterface {
             case .success(let cartResponse):
                 if let cartId = cartResponse.cartId {
                     UserManager.shared.loggedInUser?.cartId = cartId
-                    self?.loadItems()
+                    self?.products = []
+                    self?.view.showFinishOrder()
                 }
             case .failure(let error):
                 log.error(error.localizedDescription)

@@ -17,10 +17,10 @@ final class SelectedCategoryWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    init(category: CategoryModel? = nil) {
+    init(category: CategoryModel? = nil, tabbarProtocol: CustomTabbarProtocol? = nil) {
         let moduleViewController = SelectedCategoryViewController()
         super.init(viewController: moduleViewController)
-
+        self.tabbarProtocol = tabbarProtocol
         let interactor = SelectedCategoryInteractor()
         let presenter = SelectedCategoryPresenter(view: moduleViewController, interactor: interactor, wireframe: self, category: category)
         moduleViewController.presenter = presenter

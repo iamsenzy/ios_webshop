@@ -12,9 +12,16 @@ protocol DressService: class {
     func getCategories(completion: @escaping CategoryLoaded)
     func getDresses(completion: @escaping DressesLoaded)
     func getDressesByCategory(category: Int ,completion: @escaping DressesLoaded)
+    func getLatestDresses(limit: Int, completion: @escaping DressesLoaded)
 }
 
 extension RestClient: DressService {
+    func getLatestDresses(limit: Int, completion: @escaping DressesLoaded) {
+        let url = "\(Constants.baseURL)/dresses?latest=\(limit)"
+        request(url: url, method: .get, data: nil) { (result: Result<DressResponse, Error>) in
+            completion(result)
+        }
+    }
     func getDressesByCategory(category: Int, completion: @escaping DressesLoaded) {
         let url = "\(Constants.baseURL)/dresses?category=\(category)"
         request(url: url, method: .get, data: nil) { (result: Result<DressResponse, Error>) in

@@ -32,14 +32,25 @@ final class SelectedCategoryPresenter {
     }
     
     func viewDidLoad() {
-        
-        interactor.getDressesByCategory(category: category?.id ?? 0) { [weak self] result in
-            switch result {
-            case .success(let dresses):
-                self?.products = dresses.data ?? []
-                self?.view.reload()
-            case .failure(let error):
-                log.debug(error.localizedDescription)
+        if let categoryId = category?.id {
+            interactor.getDressesByCategory(category: categoryId) { [weak self] result in
+                switch result {
+                case .success(let dresses):
+                    self?.products = dresses.data ?? []
+                    self?.view.reload()
+                case .failure(let error):
+                    log.debug(error.localizedDescription)
+                }
+            }
+        } else {
+            interactor.getLatestDresses(limit: 10) { [weak self] result in
+                switch result {
+                case .success(let dresses):
+                    self?.products = dresses.data ?? []
+                    self?.view.reload()
+                case .failure(let error):
+                    log.debug(error.localizedDescription)
+                }
             }
         }
     }
@@ -49,7 +60,11 @@ final class SelectedCategoryPresenter {
 
 extension SelectedCategoryPresenter: SelectedCategoryPresenterInterface {
     func getTitle() -> String? {
-        category?.title
+        if let categoryTitle = category?.title {
+            return categoryTitle
+        } else {
+            return "b the webshop"
+        }
     }
     
     func setImageToModel(row: Int, image: UIImage) {

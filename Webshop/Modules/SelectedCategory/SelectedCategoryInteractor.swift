@@ -17,6 +17,10 @@ final class SelectedCategoryInteractor {
 // MARK: - Extensions -
 
 extension SelectedCategoryInteractor: SelectedCategoryInteractorInterface {
+    func getLatestDresses(limit: Int, completion: @escaping DressesLoaded) {
+        dressProvider.getLatestDresses(limit: limit) { completion($0) }
+    }
+    
     func getDressesByCategory(category: Int, completion: @escaping DressesLoaded) {
         dressProvider.getDressesByCategory(category: category) { completion($0) }
     }

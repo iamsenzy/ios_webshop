@@ -68,7 +68,7 @@ extension TabbarPresenter: TabbarPresenterInterface {
     func setupViewControllers() -> [UIViewController] {
         
         let homeNav = BaseNavigationController()
-        homeNav.pushWireframe(HomeWireframe())
+        homeNav.pushWireframe(SelectedCategoryWireframe(tabbarProtocol: self))
     
         let searchNav = BaseNavigationController()
         searchNav.pushWireframe(SearchWireframe(tabbarProtocol: self))

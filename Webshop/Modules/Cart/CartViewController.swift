@@ -25,6 +25,7 @@ final class CartViewController: BaseTabbarProtocolController {
     var presenter: CartPresenterInterface!
     
     private var tableView: UITableView!
+    private var successView: FinishOrderView!
 
     // MARK: - Lifecycle -
 
@@ -40,6 +41,14 @@ final class CartViewController: BaseTabbarProtocolController {
         navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = nil
         navigationController?.navigationBar.isTranslucent = true
+        
+        hideEmptyView()
+        
+        if successView != nil {
+            successView.isHidden = true
+            view.willRemoveSubview(successView)
+            successView = nil
+        }
         
         if tableView != nil {
             presenter.viewDidLoad()
@@ -60,9 +69,10 @@ final class CartViewController: BaseTabbarProtocolController {
         tableView.register(cellWithClass: CartCell.self)
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
+        tableView.isHidden = true
         let orderButton = FooterButtonView(frame: .zero)
         orderButton.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200.0)
-        orderButton.bind("ORDER")
+        orderButton.bind("FINISH ORDER")
         orderButton.delegate = self
         tableView.tableFooterView = orderButton
     
@@ -77,12 +87,42 @@ final class CartViewController: BaseTabbarProtocolController {
 // MARK: - Extensions -
 
 extension CartViewController: CartViewInterface {
+    func showFinishOrder() {
+        successView = FinishOrderView()
+        view.addSubview(successView)
+        successView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+        UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve) {
+            self.tableView.reloadData()
+            self.tableView.isHidden = true
+        }
+        hideEmptyView()
+    }
+    
     func removeProduct(row: Int) {
         tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .fade)
+        UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve) {
+            self.emptyView()
+        }
     }
     
     func reload() {
-        tableView.reloadData()
+        UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve) {
+            self.tableView.reloadData()
+            self.tableView.layoutIfNeeded()
+            self.emptyView()
+        }
+    }
+    
+    private func emptyView() {
+        if presenter.getProductsCount() == 0 {
+            tableView.isHidden = true
+            showEmptyView(titleText: "You dont have items in your cart yet.")
+        } else {
+            tableView.isHidden = false
+            hideEmptyView()
+        }
     }
     
 }
