@@ -59,6 +59,7 @@ final class CartViewController: BaseTabbarProtocolController {
     
     private func setup() {
         initTableView()
+        initIndicator()
     }
     
     private func initTableView() {
@@ -83,6 +84,16 @@ final class CartViewController: BaseTabbarProtocolController {
             make.edges.equalToSuperview()
         }
     }
+    
+    private func initIndicator() {
+       indicator = UIActivityIndicatorView()
+       indicator.style = .gray
+       view.addSubview(indicator)
+       indicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(orderButton.snp.top).offset(22.0)
+        }
+    }
 
 }
 
@@ -97,6 +108,7 @@ extension CartViewController: CartViewInterface {
     }
     
     func showFinishOrder() {
+        indicator.stopAnimating()
         successView = FinishOrderView()
         view.addSubview(successView)
         successView.snp.makeConstraints { make in
@@ -170,13 +182,6 @@ extension CartViewController: FooterButtonViewDelegate {
         UIView.animate(withDuration: 0.3) {
             self.orderButton.alpha = 0.0
         } completion: { _ in
-            self.indicator = UIActivityIndicatorView()
-            self.indicator.style = .gray
-            self.view.addSubview(self.indicator)
-            self.indicator.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.centerY.equalTo(self.orderButton.snp.top).offset(22.0)
-            }
             self.indicator.startAnimating()
         }
         

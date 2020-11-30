@@ -33,6 +33,7 @@ final class ProductViewController: BaseViewController {
     private var separatorTop: UIView!
     private var separatorBottom: UIView!
     private var separatorHorizontal: UIView!
+    private var imageIndicator: UIActivityIndicatorView!
     
     // MARK: - Public properties -
     
@@ -51,6 +52,7 @@ final class ProductViewController: BaseViewController {
     
     private func setup() {
         initScrollView()
+        initImageIndicator()
         initPager()
         setupScreens()
         initTitle()
@@ -83,6 +85,17 @@ final class ProductViewController: BaseViewController {
         view.layoutSubviews()
     }
     
+    private func initImageIndicator() {
+        imageIndicator = UIActivityIndicatorView()
+        imageIndicator.style = .gray
+        view.addSubview(imageIndicator)
+        imageIndicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(scrollView)
+        }
+        imageIndicator.startAnimating()
+    }
+    
     private func initPager() {
         pager = UIPageControl()
         pager.numberOfPages = presenter.getProduct().images?.count ?? 1
@@ -108,8 +121,12 @@ final class ProductViewController: BaseViewController {
                 frame.size = scrollView.frame.size
                 
                 let imgView = UIImageView(frame: frame)
-                imgView.downloaded(from: Constants.baseURL+(presenter.getProduct().images?[index] ?? ""))
-                imgView.contentMode = .scaleAspectFill
+                imgView.downloaded(from: Constants.baseURL+(presenter.getProduct().images?[index] ?? ""), contentMode: .scaleAspectFill) { downloadedImage in
+                    self.imageIndicator.stopAnimating()
+                    UIView.transition(with: self.view, duration: 0.3, options: .transitionCrossDissolve) {
+                        imgView.image = downloadedImage
+                    }
+                }
                 scrollView.addSubview(imgView)
             }
             

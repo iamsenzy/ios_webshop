@@ -23,6 +23,7 @@ class ProductCell: UICollectionViewCell {
     private var imageView: UIImageView!
     private var priceLabel: UILabel!
     private var titleLabel: UILabel!
+    private var imageIndicator: UIActivityIndicatorView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +39,7 @@ class ProductCell: UICollectionViewCell {
         initWholeView()
         initHeaderWrapperView()
         initImageView()
+        initImageIndicator()
         initTitleLabel()
         initPriceLabel()
     }
@@ -98,8 +100,19 @@ class ProductCell: UICollectionViewCell {
             make.edges.equalToSuperview()
         }
         
-        wholeView.setNeedsLayout()
-        wholeView.layoutIfNeeded()
+//        wholeView.setNeedsLayout()
+//        wholeView.layoutIfNeeded()
+    }
+    
+    private func initImageIndicator() {
+        imageIndicator = UIActivityIndicatorView()
+        imageIndicator.style = .white
+        wholeView.addSubview(imageIndicator)
+        imageIndicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(imageView)
+        }
+        imageIndicator.startAnimating()
     }
     
     private func initTitleLabel() {
@@ -136,6 +149,8 @@ class ProductCell: UICollectionViewCell {
             return
         }
         
+        imageIndicator.startAnimating()
+        
         titleLabel.text = model.title
         if let price = model.price {
             
@@ -143,7 +158,12 @@ class ProductCell: UICollectionViewCell {
         }
         if !(model.images?.isEmpty ?? true), let path = model.images?[0] {
             let imageUrl = Constants.baseURL + path
-            imageView.downloaded(from: imageUrl, contentMode: .scaleAspectFill)
+            imageView.downloaded(from: imageUrl, contentMode: .scaleAspectFill) { downloadedImage in
+                self.imageIndicator.stopAnimating()
+                UIView.transition(with: self.imageView, duration: 0.3, options: .transitionCrossDissolve) {
+                    self.imageView.image = downloadedImage
+                }
+            }
         }
         UIView.animate(withDuration: 0.5, animations: {
             self.setAllHidden( false )

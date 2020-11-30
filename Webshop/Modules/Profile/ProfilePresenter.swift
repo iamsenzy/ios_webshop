@@ -140,7 +140,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
        let city = validateText(text: user.city ?? "", tag: 4)
        let address = validateText(text: user.address ?? "", tag: 5)
         
-        return name && email && phone && postNumber && city && address
+       return name && email && phone && postNumber && city && address
         
     }
     
@@ -151,18 +151,13 @@ extension ProfilePresenter: ProfilePresenterInterface {
     }
     
     func saveButtonTapped() {
-        if checkEverything() || user.email != "" {
+        if user.email != "" || checkEverything() {
             setAllFieldToNormal()
             interactor.getProfileByEmail(email: user.email ?? "") { result in
                 switch result {
                 case .success(let profileResponse):
                     if profileResponse.status == 200 {
-                        if self.checkEverything() {
-                            self.user.id = profileResponse.data?[0].id
-                        } else {
-                            self.user = profileResponse.data?[0] ?? User()
-                        }
-                        
+                        self.user.id = profileResponse.data?[0].id
                         self.interactor.updateProfile(data: self.user ?? User()) { updateResult in
                             switch updateResult {
                             case .success(let updateResponse):
@@ -182,23 +177,27 @@ extension ProfilePresenter: ProfilePresenterInterface {
                             }
                         }
                     } else {
-                        self.interactor.createProfile(data: self.user ?? User(), completion: { createResult in
-                            switch createResult {
-                            case .success(let createResponse):
-                                self.user.id = createResponse.userId
-                                self.interactor.createCart(customerId: self.user.id ?? 0) { cartResult in
-                                    switch cartResult {
-                                    case .success(let cartResponse):
-                                        self.user.cartId = cartResponse.cartId
-                                        UserManager.shared.loggedInUser = self.user
-                                    case .failure(let error):
-                                        log.error(error.localizedDescription)
+                        if self.checkEverything() {
+                            self.interactor.createProfile(data: self.user ?? User(), completion: { createResult in
+                                switch createResult {
+                                case .success(let createResponse):
+                                    self.user.id = createResponse.userId
+                                    self.interactor.createCart(customerId: self.user.id ?? 0) { cartResult in
+                                        switch cartResult {
+                                        case .success(let cartResponse):
+                                            self.user.cartId = cartResponse.cartId
+                                            UserManager.shared.loggedInUser = self.user
+                                            self.view.bind(user: self.user)
+                                            self.setAllFieldToNormal()
+                                        case .failure(let error):
+                                            log.error(error.localizedDescription)
+                                        }
                                     }
+                                case .failure(let error):
+                                    log.error(error.localizedDescription)
                                 }
-                            case .failure(let error):
-                                log.error(error.localizedDescription)
-                            }
-                        })
+                            })
+                        }
                     }
                 case .failure(let error):
                     log.error(error.localizedDescription)
