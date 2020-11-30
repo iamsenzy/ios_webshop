@@ -149,7 +149,7 @@ final class ProductViewController: BaseViewController {
     
     private func initColorTitle() {
         colorTitleLabel = UILabel()
-        colorTitleLabel.text = "COLOR"
+        colorTitleLabel.text = "Product.Color".localized
         colorTitleLabel.font = FontDeliver.robotoFont(ofSize: 16.0)
         colorTitleLabel.textAlignment = .left
         colorTitleLabel.textColor = Colors.lightGray
@@ -162,7 +162,7 @@ final class ProductViewController: BaseViewController {
     
     private func initSizeTitle() {
         sizeTitleLabel = UILabel()
-        sizeTitleLabel.text = "SIZE"
+        sizeTitleLabel.text = "Product.Size".localized
         sizeTitleLabel.font = FontDeliver.robotoFont(ofSize: 16.0)
         sizeTitleLabel.textAlignment = .left
         sizeTitleLabel.textColor = Colors.lightGray
@@ -175,7 +175,7 @@ final class ProductViewController: BaseViewController {
     
     private func initColorLabel() {
         colorLabel = UILabel()
-        colorLabel.text = "BLACK"
+        colorLabel.text = "Black".localized
         colorLabel.font = FontDeliver.boldRobotoFont(ofSize: 20.0)
         colorLabel.textAlignment = .left
         colorLabel.textColor = Colors.darkGray
@@ -201,7 +201,7 @@ final class ProductViewController: BaseViewController {
     
     private func initPriceTitle() {
         priceTitleLabel = UILabel()
-        priceTitleLabel.text = "THE PRICE"
+        priceTitleLabel.text = "Product.ThePrice".localized
         priceTitleLabel.font = FontDeliver.robotoFont(ofSize: 16.0)
         priceTitleLabel.textAlignment = .left
         priceTitleLabel.textColor = Colors.lightGray
@@ -228,7 +228,7 @@ final class ProductViewController: BaseViewController {
     private func initAddToCartButton() {
         button = UIButton()
         button.titleLabel?.font = FontDeliver.mediumRobotoFont(ofSize: 20.0)
-        button.setTitle("ADD TO CART", for: .normal)
+        button.setTitle("Product.AddToCart".localized, for: .normal)
         button.backgroundColor = Colors.darkGray
         button.cornerRadius = 8.0
         button.addTarget(self, action: #selector(addToCartTapped), for: .touchUpInside)
@@ -298,9 +298,15 @@ final class ProductViewController: BaseViewController {
 // MARK: - Extensions -
 
 extension ProductViewController: ProductViewInterface {
+    func showAlert() {
+        let alert = UIAlertController(title: "Error".localized, message: "Error.Login".localized, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func stopAnimation(success: Bool) {
         if success {
-            button.setTitle("GO TO CART", for: .normal)
+            button.setTitle("Product.GoToCart".localized, for: .normal)
             state = .goToCart
         }
         indicator.stopAnimating()

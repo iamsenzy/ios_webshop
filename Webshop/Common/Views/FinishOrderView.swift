@@ -41,7 +41,7 @@ class FinishOrderView: UIView {
     
     private func initSuccessLabel() {
         successLabel = UILabel()
-        successLabel.text = "You successfully order your stuffs"
+        successLabel.text = "FinishOrder.Success".localized
         successLabel.font = FontDeliver.mediumRobotoFont(ofSize: 18.0)
         successLabel.textColor = Colors.darkGray
         successLabel.textAlignment = .center

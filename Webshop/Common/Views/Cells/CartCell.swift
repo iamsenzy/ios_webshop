@@ -103,7 +103,7 @@ class CartCell: UITableViewCell {
     func bind(model: ProductCellBindable) {
         titleLabel.text = model.title
         priceLabel.text = ((model.quantity?.double ?? 1.0) * (model.price ?? 1.0)).toCurrency()
-        quantityLabel.text = "Quantity: \(model.quantity ?? 1)"
+        quantityLabel.text = String(format: "CartCell.Quantity".localized, (model.quantity ?? 1))
         if !(model.images?.isEmpty ?? true), let image = model.images?[0] {
             let imageUrl = Constants.baseURL + image
             dressImageView.downloaded(from: imageUrl, contentMode: .scaleAspectFit)

@@ -39,7 +39,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title =  "Profile"
+        navigationItem.title =  "Profile".localized
         setup()
         presenter.viewDidLoad()
     }
@@ -76,7 +76,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     
     private func initLogoutButton() {
         if presenter.logdInUser() {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile.Logout".localized, style: .done, target: self, action: #selector(logoutButtonTapped))
         } else {
             navigationItem.rightBarButtonItem = nil
         }
@@ -86,7 +86,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initNameView() {
         nameView = TextFieldWithTitle()
         nameView.delegate = self
-        nameView.bind(title: "Name", tag: 0)
+        nameView.bind(title: "Profile.Name".localized, tag: 0)
         scrollView.addSubview(nameView)
         nameView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(30.0)
@@ -98,7 +98,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initEmailView() {
         emailView = TextFieldWithTitle()
         emailView.delegate = self
-        emailView.bind(title: "Email", tag: 1)
+        emailView.bind(title: "Profile.Email".localized, tag: 1)
         scrollView.addSubview(emailView)
         emailView.snp.makeConstraints { make in
             make.top.equalTo(nameView.snp.bottom).offset(10.0)
@@ -110,7 +110,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initPhoneView() {
         phoneView = TextFieldWithTitle()
         phoneView.delegate = self
-        phoneView.bind(title: "Phone Number", tag: 2)
+        phoneView.bind(title: "Profile.Phone".localized, tag: 2)
         scrollView.addSubview(phoneView)
         phoneView.snp.makeConstraints { make in
             make.top.equalTo(emailView.snp.bottom).offset(10.0)
@@ -121,7 +121,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initPostView() {
         postNumberView = TextFieldWithTitle()
         postNumberView.delegate = self
-        postNumberView.bind(title: "Post Number", tag: 3)
+        postNumberView.bind(title: "Profile.PostNumber".localized, tag: 3)
         scrollView.addSubview(postNumberView)
         postNumberView.snp.makeConstraints { make in
             make.top.equalTo(phoneView.snp.bottom).offset(10.0)
@@ -132,7 +132,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initCityView() {
         cityView = TextFieldWithTitle()
         cityView.delegate = self
-        cityView.bind(title: "City", tag: 4)
+        cityView.bind(title: "Profile.City".localized, tag: 4)
         scrollView.addSubview(cityView)
         cityView.snp.makeConstraints { make in
             make.top.equalTo(phoneView.snp.bottom).offset(10.0)
@@ -143,7 +143,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initAddressView() {
         addressView = TextFieldWithTitle()
         addressView.delegate = self
-        addressView.bind(title: "Address", tag: 5)
+        addressView.bind(title: "Profile.Address".localized, tag: 5)
         scrollView.addSubview(addressView)
         addressView.snp.makeConstraints { make in
             make.top.equalTo(cityView.snp.bottom).offset(10.0)
@@ -155,7 +155,7 @@ final class ProfileViewController: BaseTabbarProtocolController {
     private func initsaveButton() {
         saveButton = UIButton()
         saveButton.titleLabel?.font = FontDeliver.mediumRobotoFont(ofSize: 20.0)
-        saveButton.setTitle("SAVE", for: .normal)
+        saveButton.setTitle("Profile.Save".localized, for: .normal)
         saveButton.backgroundColor = Colors.darkGray
         saveButton.cornerRadius = 8.0
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)

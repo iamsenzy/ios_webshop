@@ -16,6 +16,7 @@ protocol ProductWireframeInterface: WireframeInterface {
 
 protocol ProductViewInterface: ViewInterface {
     func stopAnimation(success: Bool)
+    func showAlert()
 }
 
 protocol ProductPresenterInterface: PresenterInterface {

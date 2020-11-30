@@ -62,10 +62,12 @@ extension CartPresenter: CartPresenterInterface {
                 if let cartId = cartResponse.cartId {
                     UserManager.shared.loggedInUser?.cartId = cartId
                     self?.products = []
+                    self?.view.stopAnimation()
                     self?.view.showFinishOrder()
                 }
             case .failure(let error):
                 log.error(error.localizedDescription)
+                self?.view.stopAnimation()
             }
         }
     }

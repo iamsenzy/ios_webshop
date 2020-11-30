@@ -26,12 +26,14 @@ final class CartViewController: BaseTabbarProtocolController {
     
     private var tableView: UITableView!
     private var successView: FinishOrderView!
+    private var orderButton: FooterButtonView!
+    private var indicator: UIActivityIndicatorView!
 
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title =  "Cart"
+        navigationItem.title =  "Cart".localized
         setup()
         presenter.viewDidLoad()
     }
@@ -70,9 +72,9 @@ final class CartViewController: BaseTabbarProtocolController {
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
         tableView.isHidden = true
-        let orderButton = FooterButtonView(frame: .zero)
+        orderButton = FooterButtonView(frame: .zero)
         orderButton.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200.0)
-        orderButton.bind("FINISH ORDER")
+        orderButton.bind("Cart.FinishOrder".localized)
         orderButton.delegate = self
         tableView.tableFooterView = orderButton
     
@@ -87,6 +89,13 @@ final class CartViewController: BaseTabbarProtocolController {
 // MARK: - Extensions -
 
 extension CartViewController: CartViewInterface {
+    func stopAnimation() {
+        indicator.stopAnimating()
+        UIView.animate(withDuration: 0.3) {
+            self.orderButton.alpha = 1.0
+        }
+    }
+    
     func showFinishOrder() {
         successView = FinishOrderView()
         view.addSubview(successView)
@@ -118,7 +127,7 @@ extension CartViewController: CartViewInterface {
     private func emptyView() {
         if presenter.getProductsCount() == 0 {
             tableView.isHidden = true
-            showEmptyView(titleText: "You dont have items in your cart yet.")
+            showEmptyView(titleText: "Cart.Empty".localized )
         } else {
             tableView.isHidden = false
             hideEmptyView()
@@ -142,7 +151,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete".localized ) {  (contextualAction, view, boolValue) in
             self.presenter.removeProduct(row: indexPath.row)
         }
         
@@ -158,6 +167,19 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension CartViewController: FooterButtonViewDelegate {
     func footerButtonTapped() {
+        UIView.animate(withDuration: 0.3) {
+            self.orderButton.alpha = 0.0
+        } completion: { _ in
+            self.indicator = UIActivityIndicatorView()
+            self.indicator.style = .gray
+            self.view.addSubview(self.indicator)
+            self.indicator.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalTo(self.orderButton.snp.top).offset(22.0)
+            }
+            self.indicator.startAnimating()
+        }
+        
         presenter.orderButtonTapped()
     }
 }

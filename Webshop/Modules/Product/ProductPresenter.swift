@@ -38,7 +38,11 @@ extension ProductPresenter: ProductPresenterInterface {
     }
     
     func addToCartTapped() {
-        guard let user = UserManager.shared.loggedInUser, let dressId = product?.id else { return }
+        guard let user = UserManager.shared.loggedInUser, let dressId = product?.id else {
+            view.showAlert()
+            view.stopAnimation(success: false)
+            return
+        }
         let dressData = DressData()
         dressData.cartId = user.cartId
         dressData.dressId = dressId

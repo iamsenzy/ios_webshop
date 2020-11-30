@@ -17,6 +17,7 @@ protocol CartViewInterface: ViewInterface {
     func reload()
     func removeProduct(row: Int)
     func showFinishOrder()
+    func stopAnimation()
 }
 
 protocol CartPresenterInterface: PresenterInterface {

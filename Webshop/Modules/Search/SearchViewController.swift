@@ -71,14 +71,14 @@ final class SearchViewController: BaseTabbarProtocolController {
     }
     
     private func initNavigation() {
-        navigationItem.title = "Search"
+        navigationItem.title = "Search".localized
     }
     
     private func initSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Category"
+        searchController.searchBar.placeholder = "Search.Category".localized
         searchController.searchBar.sizeToFit()
         navigationItem.searchController = searchController
         definesPresentationContext = true

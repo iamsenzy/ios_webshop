@@ -63,7 +63,7 @@ extension SelectedCategoryPresenter: SelectedCategoryPresenterInterface {
         if let categoryTitle = category?.title {
             return categoryTitle
         } else {
-            return "b the webshop"
+            return "B.The.Webshop".localized
         }
     }
     

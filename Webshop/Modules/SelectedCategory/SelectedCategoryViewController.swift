@@ -86,7 +86,7 @@ extension SelectedCategoryViewController: SelectedCategoryViewInterface {
             }) { _ in
                 if self.presenter.getProductsCount() == 0 {
                     self.collectionView.isHidden = true
-                    self.showEmptyView(titleText: "No items here yet :(")
+                    self.showEmptyView(titleText: "Products.Empty".localized )
                 } else {
                     self.collectionView.isHidden = false
                     self.hideEmptyView()
@@ -109,7 +109,6 @@ extension SelectedCategoryViewController: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("I'm tapping the \(indexPath.item)")
         if let cell = collectionView.cellForItem(at: indexPath) as? ProductCell {
             presenter.setImageToModel(row: indexPath.row, image: cell.getImage() ?? UIImage())
         }

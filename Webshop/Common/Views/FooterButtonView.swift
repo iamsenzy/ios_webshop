@@ -67,4 +67,3 @@ class FooterButtonView: UIView {
     }
     
 }
-
