@@ -168,7 +168,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-        
         return swipeActions
     }
     
@@ -182,9 +181,9 @@ extension CartViewController: FooterButtonViewDelegate {
         UIView.animate(withDuration: 0.3) {
             self.orderButton.alpha = 0.0
         } completion: { _ in
+            self.indicator.isHidden = false
             self.indicator.startAnimating()
+            self.presenter.orderButtonTapped()
         }
-        
-        presenter.orderButtonTapped()
     }
 }

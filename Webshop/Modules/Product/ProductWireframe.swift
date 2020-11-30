@@ -32,8 +32,8 @@ final class ProductWireframe: BaseWireframe {
 
 extension ProductWireframe: ProductWireframeInterface {
     func goToCart() {
-        navigationController?.popToRootViewController(animated: true)
-        self.tabbarProtocol?.goToTab(index: 2)
+        navigationController?.popViewController()
+        tabbarProtocol?.goToTab(index: 2)
     }
     
 }
