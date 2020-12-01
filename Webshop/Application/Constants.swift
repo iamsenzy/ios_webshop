@@ -1,9 +1,7 @@
 //
 //  Constants.swift
-//  Template
 //
-//  Created by Levente Vig on 2019. 12. 22..
-//  Copyright © 2019. levivig. All rights reserved.
+//  Copyright © 2020. gesben. All rights reserved.
 //
 
 import UIKit

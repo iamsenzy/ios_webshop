@@ -1,9 +1,7 @@
 //
 //  DataExtensions.swift
-//  Template
 //
-//  Created by Levente Vig on 2020. 02. 02..
-//  Copyright © 2020. levivig. All rights reserved.
+//  Copyright © 2020. gesben. All rights reserved.
 //
 
 import Foundation

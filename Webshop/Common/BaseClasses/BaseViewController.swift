@@ -1,9 +1,7 @@
 //
 //  BaseViewController.swift
-//  citychat
 //
-//  Created by Levente Vig on 2019. 07. 10..
-//  Copyright © 2019. CodeYard. All rights reserved.
+//  Copyright © 2020. gesben. All rights reserved.
 //
 
 import Foundation

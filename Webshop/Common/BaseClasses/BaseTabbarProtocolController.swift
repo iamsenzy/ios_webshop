@@ -1,9 +1,7 @@
 //
 //  BaseTabbarProtocolController.swift
-//  citychat
 //
-//  Created by Levente Vig on 2019. 07. 12..
-//  Copyright © 2019. CodeYard. All rights reserved.
+//  Copyright © 2020. gesben. All rights reserved.
 //
 
 import UIKit
