@@ -157,7 +157,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
                 switch result {
                 case .success(let profileResponse):
                     if profileResponse.status == 200 {
-                        self.user.id = profileResponse.data?[0].id
+                        self.user = profileResponse.data?[0] ?? User()
                         self.interactor.updateProfile(data: self.user ?? User()) { updateResult in
                             switch updateResult {
                             case .success(let updateResponse):

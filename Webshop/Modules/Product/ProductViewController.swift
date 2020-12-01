@@ -113,13 +113,12 @@ final class ProductViewController: BaseViewController {
         }
     }
     
-   private func setupImages() {
+    private func setupImages() {
         var frame = CGRect.zero
+        frame.size =  scrollView.frame.size
         if let imagesCount = presenter.getProduct().images?.count, imagesCount != 0 {
             for index in 0...imagesCount - 1 {
                 frame.origin.x = scrollView.frame.size.width * CGFloat(index)
-                frame.size = scrollView.frame.size
-                
                 let imgView = UIImageView(frame: frame)
                 imgView.downloaded(from: Constants.baseURL+(presenter.getProduct().images?[index] ?? ""), contentMode: .scaleAspectFill) { downloadedImage in
                     self.imageIndicator.stopAnimating()
