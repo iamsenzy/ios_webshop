@@ -86,7 +86,7 @@ class ProductCell: UICollectionViewCell {
         wholeView.addSubview(headerWrapperView)
         headerWrapperView.snp.makeConstraints { make in
             make.top.leading.centerX.equalToSuperview()
-            make.height.equalTo(contentView.size.height * 0.66)
+            make.height.equalTo(contentView.size.height * 0.66)
         }
     }
     
@@ -99,9 +99,6 @@ class ProductCell: UICollectionViewCell {
         imageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-//        wholeView.setNeedsLayout()
-//        wholeView.layoutIfNeeded()
     }
     
     private func initImageIndicator() {
@@ -117,7 +114,6 @@ class ProductCell: UICollectionViewCell {
     
     private func initTitleLabel() {
         titleLabel = UILabel()
-        titleLabel.text = "This is the title"
         titleLabel.font = FontDeliver.mediumRobotoFont(ofSize: 16.0)
         titleLabel.textColor = Colors.darkGray
         titleLabel.numberOfLines  = 2
@@ -131,7 +127,6 @@ class ProductCell: UICollectionViewCell {
     
     private func initPriceLabel() {
         priceLabel = UILabel()
-        priceLabel.text = "This is the Price"
         priceLabel.font = FontDeliver.mediumRobotoFont(ofSize: 14.0)
         priceLabel.textColor = Colors.gray
         wholeView.addSubview(priceLabel)
@@ -169,10 +164,6 @@ class ProductCell: UICollectionViewCell {
             self.setAllHidden( false )
         })
             
-    }
-    
-    func getImage() -> UIImage? {
-        imageView.image
     }
     
     func setAllHidden(_ hide: Bool ) {

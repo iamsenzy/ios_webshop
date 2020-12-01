@@ -14,6 +14,7 @@ final class SearchViewController: BaseTabbarProtocolController {
 
     private var searchController: UISearchController!
     private var tableView: UITableView!
+    private var filteredCategory: [CategoryModel] = []
     
     override var tabbarImage: UIImage? {
         UIImage(named: "search")
@@ -26,7 +27,6 @@ final class SearchViewController: BaseTabbarProtocolController {
     // MARK: - Public properties -
 
     var presenter: SearchPresenterInterface!
-    var filteredCategory: [CategoryModel] = []
     
     var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true

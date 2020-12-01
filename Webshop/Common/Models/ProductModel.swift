@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import ObjectMapper
+import UIKit
 
 class ProductModel: NSObject, Mappable {
     var id: Int?
