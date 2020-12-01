@@ -54,7 +54,7 @@ final class ProductViewController: BaseViewController {
         initScrollView()
         initImageIndicator()
         initPager()
-        setupScreens()
+        setupImages()
         initTitle()
         initDesc()
         initColorTitle()
@@ -113,7 +113,7 @@ final class ProductViewController: BaseViewController {
         }
     }
     
-    func setupScreens() {
+    func setupImages() {
         var frame = CGRect.zero
         if let imagesCount = presenter.getProduct().images?.count, imagesCount != 0 {
             for index in 0...imagesCount - 1 {
