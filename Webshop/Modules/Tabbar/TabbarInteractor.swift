@@ -24,5 +24,4 @@ extension TabbarInteractor: TabbarInteractorInterface {
     func getProfile(profileId: Int, completion: @escaping ProfileLoaded) {
         profileProvider.getProfile(profileId: profileId) { completion($0) }
     }
-    
 }

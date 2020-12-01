@@ -67,10 +67,6 @@ extension SelectedCategoryPresenter: SelectedCategoryPresenterInterface {
         }
     }
     
-    func setImageToModel(row: Int, image: UIImage) {
-        products[row].image = image
-    }
-    
     func getProductsCount() -> Int {
         products.count
     }

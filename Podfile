@@ -10,10 +10,6 @@ target 'Webshop' do
   # Pods for Template
   pod 'Alamofire', '~> 5.0.0-rc.2'
   pod 'AlamofireObjectMapper', '~> 6.2.0'
-  # pod 'Crashlytics'
-  # pod 'Fabric'
-  # pod 'Firebase/Analytics'
-  # pod 'SDWebImage'
   pod 'SnapKit'
   pod 'SwifterSwift'
   pod 'SwiftLint'

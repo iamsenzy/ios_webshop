@@ -108,23 +108,4 @@ class RestClient {
                 }
         }
     }
-//    For upload image
-//    internal func postImage(attachment: Data, completion: @escaping UserLoaded) {
-//        let url = "\(Constants.baseURL)/"
-//        print (url)
-//
-//        AF.upload(multipartFormData: {
-//            multipartFormData in
-//            multipartFormData.append(attachment, withName: "file", fileName: "file.jpg", mimeType: "image/jpg")
-//        }, to: url, method: .post, headers: headers).responseObject { (response: DataResponse<User, AFError>) in
-//            print(response.debugDescription)
-//            switch response.result {
-//            case .success(let object):
-//                completion(Result.success(object))
-//            case .failure(let error):
-//                completion(Result.failure(error))
-//            }
-//        }
-//
-//    }
 }

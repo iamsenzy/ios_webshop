@@ -23,7 +23,6 @@ protocol SelectedCategoryPresenterInterface: PresenterInterface {
     func getItem(_ row: Int) -> ProductModel
     func getItems() -> [ProductModel]
     func itemSelected(_ row: Int)
-    func setImageToModel(row: Int, image: UIImage)
     func getTitle() -> String?
 }
 

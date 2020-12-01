@@ -109,9 +109,6 @@ extension SelectedCategoryViewController: UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ProductCell {
-            presenter.setImageToModel(row: indexPath.row, image: cell.getImage() ?? UIImage())
-        }
         presenter.itemSelected(indexPath.row)
     }
     
