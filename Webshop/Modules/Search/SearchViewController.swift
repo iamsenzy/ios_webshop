@@ -28,15 +28,15 @@ final class SearchViewController: BaseTabbarProtocolController {
 
     var presenter: SearchPresenterInterface!
     
-    var isSearchBarEmpty: Bool {
+    private var isSearchBarEmpty: Bool {
       return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    var isFiltering: Bool {
+    private var isFiltering: Bool {
       return searchController.isActive && !isSearchBarEmpty
     }
     
-    func filterContentForSearchText(_ searchText: String) {
+    private func filterContentForSearchText(_ searchText: String) {
         filteredCategory = presenter.getItems().filter { (category: CategoryModel) -> Bool in
             if let categoryTitle = category.title {
                 return categoryTitle.lowercased().contains(searchText.lowercased())
