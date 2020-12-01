@@ -17,7 +17,6 @@ class ProductModel: NSObject, Mappable {
     var price: Double?
     var images: [String]?
     var category: Int?
-    var image: UIImage?
     
     var quantity: Int?
     var orderId: Int?

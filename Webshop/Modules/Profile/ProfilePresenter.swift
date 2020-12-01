@@ -45,6 +45,7 @@ extension ProfilePresenter: ProfilePresenterInterface {
     
     func logoutButtonTapped() {
         UserManager.shared.logout()
+        self.user = User()
         UIView.animate(withDuration: 0.3) {
             self.view.bind(user: User())
         }

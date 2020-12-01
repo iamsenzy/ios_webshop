@@ -25,7 +25,6 @@ final class ProfileViewController: BaseTabbarProtocolController {
     var presenter: ProfilePresenterInterface!
     
     private var scrollView: UIScrollView!
-    
     private var logutButton: UIButton!
     private var nameView: TextFieldWithTitle!
     private var emailView: TextFieldWithTitle!

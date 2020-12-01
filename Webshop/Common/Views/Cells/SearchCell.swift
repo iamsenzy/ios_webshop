@@ -10,7 +10,6 @@ import UIKit
 
 protocol SearchCellBindable {
     var title: String? { get }
-    var imageUrl: String? { get }
 }
 
 class SearchCell: UITableViewCell {

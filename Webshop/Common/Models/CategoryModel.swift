@@ -13,12 +13,10 @@ class CategoryModel: NSObject, Mappable {
    
     var id: Int?
     var title: String?
-    var imageUrl: String? = nil
     
-    convenience init(title: String? = "", imageUrl: String? = "") {
+    convenience init(title: String? = "") {
         self.init()
         self.title = title
-        self.imageUrl = imageUrl
     }
     
     override init() {
